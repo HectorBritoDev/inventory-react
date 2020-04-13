@@ -1,6 +1,19 @@
 import React from 'react';
+import { Router, Route, Switch } from 'react-router-dom';
+import history from '../history';
+import Login from './Login';
 
 const App = () => {
-    return <div>App</div>
+    return (
+        <div>
+            <Router history={history}>
+                <div>
+                    <Switch>
+                        <Route path="/login" exact component={Login} />
+                    </Switch>
+                </div>
+            </Router>
+        </div>
+    );
 }
 export default App;
