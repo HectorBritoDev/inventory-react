@@ -1,17 +1,26 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import history from '../history';
-import Login from './Login';
+import './css/App.css';
+import Header from './Header';
+import Footer from './Footer';
+import Dashboard from './Dashboard';
+import Sidebar from './Sidebar';
+// import Sidebar from './Sidebar';
+
 
 const App = () => {
     return (
-        <div>
+        <div className="container">
             <Router history={history}>
-                <div>
+                <Header />
+                <main>
+                    <Sidebar />
                     <Switch>
-                        <Route path="/login" exact component={Login} />
+                        <Route path="/" exact component={Dashboard} />
                     </Switch>
-                </div>
+                </main>
+                <Footer />
             </Router>
         </div>
     );
