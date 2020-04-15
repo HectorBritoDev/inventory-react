@@ -1,4 +1,7 @@
  @use './fonts.css';
+ //  @use '../../src/components/css/_variables';
+ @import '../../src/components/css/_variables';
+
 
  * {
      box-sizing: border-box;
@@ -7,4 +10,13 @@
  body {
      font-family: 'Lato';
      margin: 0;
+     height: $height-default;
+ }
+
+ html {
+     height: $height-default;
+ }
+
+ #root {
+     height: $height-default;
  }
