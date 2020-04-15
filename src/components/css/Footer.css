@@ -1,1 +1,11 @@
-/* No CSS *//*# sourceMappingURL=Footer.css.map */
+footer {
+  grid-area: footer;
+  background-color: darkolivegreen;
+  text-align: right;
+}
+
+footer p {
+  margin: 0;
+  padding: 0.3rem;
+}
+/*# sourceMappingURL=Footer.css.map */
