@@ -1,0 +1,60 @@
+@import 'variables';
+
+header {
+    grid-area: header;
+}
+
+.main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: map-get($colors, background-contrast);
+}
+
+// .main-header__brand {}
+
+.main-header__brand-logo {
+    vertical-align: middle;
+    height: 2rem;
+    margin: 0 1rem;
+}
+
+.main-nav {
+    display: flex;
+    // background-color: white;
+    align-items: center;
+    margin: 0 1rem;
+    // height: 100%;
+    overflow: hidden;
+}
+
+.main-nav__items {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    height: 100%;
+
+}
+
+.main-nav__item {
+    margin: 0 0.5rem;
+    border: 0;
+    padding: 0.65rem;
+    cursor: pointer;
+    height: 100%;
+
+    // padding: 0.7rem; // border-radius: 5px;
+    // padding: 0.3rem 0.5rem;
+    &:active,
+    &:hover {
+        background-color: $color-primary;
+        // color: map-get($colors, primary);
+        color: $color-general-background-contrast;
+        // padding: 0.5rem;
+        // border: 0;
+        // border-bottom: solid 2px black;
+    }
+
+}
