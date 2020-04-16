@@ -20,7 +20,7 @@ main {
 }
 
 .content {
-  background-color: darkred;
+  background-color: darkorchid;
   -ms-grid-column: 2;
       grid-column-start: 2;
   grid-column-end: 3;
