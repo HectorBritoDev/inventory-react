@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Field, reduxForm, SubmissionError } from 'redux-form';
 import { connect } from 'react-redux';
 import { loginAction } from '../actions';
+import { closeLoginModal } from './methods/login';
 import './css/Login.css';
 
 
@@ -12,7 +13,7 @@ class Login extends React.Component {
         const { token, reset } = this.props;
         if (token && token.access_token) {
             reset();
-            this.closeLoginModal();
+            closeLoginModal();
         }
     }
     renderError = ({ error, touched }) => {
@@ -32,13 +33,7 @@ class Login extends React.Component {
         );
     }
 
-    closeLoginModal = () => {
-        // console.log(this.props);
-        const login_modal = document.querySelector('.login-modal');
-        const backdrop = document.querySelector('.backdrop');
-        login_modal.classList.remove('show');
-        backdrop.classList.remove('show');
-    }
+
 
     onSubmitForm = formValues => {
         return this.props.loginAction(formValues)
@@ -56,7 +51,7 @@ class Login extends React.Component {
     render() {
         return ReactDOM.createPortal(
             <div className="login-container">
-                <div className="backdrop" onClick={this.closeLoginModal}></div>
+                <div className="backdrop" onClick={closeLoginModal}></div>
                 <div className="login-modal" >
                     <div className="login-modal__body">
                         <div className="login-modal__title">
@@ -78,6 +73,7 @@ class Login extends React.Component {
         );
     }
 }
+
 
 const validate = formValues => {
     const errors = {};

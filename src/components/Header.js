@@ -2,21 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './css/Header.css';
 import Login from './Login';
+import { showLoginModal } from './methods/login';
 
 
 class Header extends React.Component {
 
-    showLoginModal = () => {
-        const login_modal = document.querySelector('.login-modal');
-        const backdrop = document.querySelector('.backdrop');
-        login_modal.classList.add('show');
-        backdrop.classList.add('show');
-        document.querySelector('#login-email').focus();
-    }
     renderLoginOptions = () => {
         return (
             <React.Fragment>
-                <li className="main-nav__item" onClick={this.showLoginModal}>Login</li>
+                <li className="main-nav__item" onClick={showLoginModal}>Login</li>
                 <li className="main-nav__item">Register</li>
             </React.Fragment>
         )
