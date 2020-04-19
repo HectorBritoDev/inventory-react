@@ -3,12 +3,18 @@ import ReactDOM from 'react-dom';
 import { Field, reduxForm, SubmissionError } from 'redux-form';
 import { connect } from 'react-redux';
 import { loginAction } from '../actions';
-import submit from './submit';
 import './css/Login.css';
 
 
 class Login extends React.Component {
 
+    componentDidUpdate() {
+        const { token, reset } = this.props;
+        if (token && token.access_token) {
+            reset();
+            this.closeLoginModal();
+        }
+    }
     renderError = ({ error, touched }) => {
         if (error && touched) {
             return <span style={{ color: "red" }}>{error}</span>
@@ -23,7 +29,6 @@ class Login extends React.Component {
                 <input {...input} className="login-modal__input" id={id} type={type} placeholder={placeholder} autoComplete='off' />
                 {this.renderError(meta)}
             </React.Fragment>
-
         );
     }
 
@@ -34,11 +39,9 @@ class Login extends React.Component {
         login_modal.classList.remove('show');
         backdrop.classList.remove('show');
     }
-    sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
     onSubmitForm = formValues => {
-        return new Promise(resolve => resolve())
-            .then(() => this.props.loginAction(formValues))
+        return this.props.loginAction(formValues)
             .then(() => {
                 // simulate server latency
                 if (this.props.token === 'Bad Request') {
@@ -48,7 +51,6 @@ class Login extends React.Component {
                     })
                 }
             })
-        // .catch(error =>{ console.log('there')} );
 
     }
     render() {
@@ -59,7 +61,7 @@ class Login extends React.Component {
                     <div className="login-modal__body">
                         <div className="login-modal__title">
                             Iniciar Sesión
-                </div>
+                        </div>
                         <div className="login-modal__content">
                             {/* Al usar redux-form al evento onSubit se le pasa el metodo habdleSubmit que 
                             viene con redux-form y a ese metodo le pasamos nuestro metodo local */}
