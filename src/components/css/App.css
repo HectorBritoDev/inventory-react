@@ -12,8 +12,8 @@ main {
 .container {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 2.5rem 1fr fit-content(2.5rem);
-      grid-template-rows: 2.5rem 1fr fit-content(2.5rem);
+  -ms-grid-rows: fit-content(2.5rem) 1fr fit-content(2.5rem);
+      grid-template-rows: fit-content(2.5rem) 1fr fit-content(2.5rem);
       grid-template-areas: "header" "main" "footer";
   background-color: darkmagenta;
   height: 100%;
