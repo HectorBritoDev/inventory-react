@@ -8,7 +8,7 @@ export const authConst = {
 }
 
 export const notificationConst = {
-    SUCCESS: 'NOTIFICATION_SUCCESSS',
+    SUCCESS: 'NOTIFICATION_SUCCESS',
     ERROR: 'NOTIFICATION_ERROR',
     CLEAN: 'NOTIFICATION_CLEAN'
 };
@@ -17,4 +17,10 @@ export const productConst = {
     GET_ALL_PRODUCTS: 'GET_ALL_PRODUCTS',
     CLEAN: 'PRODUCTS_CLEAN',
     ERROR: 'PRODUCTS_ERROR'
+}
+
+export const saleConst = {
+    GET_ALL_SALES: 'GET_ALL_SALES',
+    CLEAN: 'SALE_CLEAN',
+    ERROR: 'SALE_ERROR'
 }
