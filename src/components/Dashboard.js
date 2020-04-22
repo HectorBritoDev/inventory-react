@@ -2,8 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Cart from './resources/Cart';
 import './css/Dashboard.css';
+import { getAllProducts } from '../redux/actions/products.action';
 class Dashboard extends React.Component {
 
+    componentDidMount() {
+        this.props.getAllProducts();
+    }
     renderActivitySection = () => {
         return (
             <div className="dashboard-activity">
@@ -121,4 +125,4 @@ class Dashboard extends React.Component {
 }
 
 const mapStateToProps = state => { return { products: state.products } }
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps, { getAllProducts })(Dashboard);
