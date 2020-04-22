@@ -12,3 +12,9 @@ export const notificationConst = {
     ERROR: 'NOTIFICATION_ERROR',
     CLEAN: 'NOTIFICATION_CLEAN'
 };
+
+export const productConst = {
+    GET_ALL_PRODUCTS: 'GET_ALL_PRODUCTS',
+    CLEAN: 'PRODUCTS_CLEAN',
+    ERROR: 'PRODUCTS_ERROR'
+}
