@@ -1,3 +1,27 @@
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.primary {
+  color: #ff971d;
+}
+
+.secondary {
+  color: #ffe8d6;
+}
+
+.strong {
+  font-weight: 700;
+}
+
 main {
   height: 100%;
   -ms-grid-row: 2;
