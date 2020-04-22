@@ -5,7 +5,7 @@ main {
     height: $height-default;
     grid-area: main;
     display: grid;
-    grid-template-columns: 20% 1fr;
+    grid-template-columns: fit-content(20%) 1fr;
     background-color: red;
 }
 
@@ -18,7 +18,7 @@ main {
 }
 
 .content {
-    background-color: darkorchid;
+    background-color: map-get($colors, general-background);
     grid-column-start: 2;
     grid-column-end: 3;
 }

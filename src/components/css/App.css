@@ -5,7 +5,7 @@ main {
   grid-area: main;
   display: -ms-grid;
   display: grid;
-      grid-template-columns: 20% 1fr;
+      grid-template-columns: fit-content(20%) 1fr;
   background-color: red;
 }
 
@@ -20,7 +20,7 @@ main {
 }
 
 .content {
-  background-color: darkorchid;
+  background-color: #fff;
   -ms-grid-column: 2;
       grid-column-start: 2;
   grid-column-end: 3;
