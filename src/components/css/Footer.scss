@@ -1,6 +1,8 @@
+@import'variables';
+
 footer {
     grid-area: footer;
-    background-color: darkolivegreen;
+    background-color: map-get($colors, secondary);
     text-align: right;
 
     p {
