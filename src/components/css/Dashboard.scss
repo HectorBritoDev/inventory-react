@@ -1,0 +1,21 @@
+@import 'variables';
+
+.dashboard-top {
+    margin: 1rem;
+}
+
+.dashboard-top__items {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 1rem;
+    // border-bottom: 1px solid map-get($colors, primary);
+    border-bottom: 1px solid gray;
+}
+
+.dashboard-top__header {
+    display: block;
+    font-size: 1.5rem;
+    color: gray;
+    text-align: center;
+}

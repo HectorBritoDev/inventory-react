@@ -1,8 +1,9 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "AAEA,AAAA,cAAc,CAAC;EACX,MAAM,EAAE,IAAI;CACf;;AAED,AAAA,qBAAqB,CAAC;EAClB,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,YAAY;EAC7B,SAAS,EAAE,IAAI;EACf,OAAO,EAAE,IAAI;EAEb,aAAa,EAAE,cAAc;CAChC;;AAED,AAAA,sBAAsB,CAAC;EACnB,OAAO,EAAE,KAAK;EACd,SAAS,EAAE,MAAM;EACjB,KAAK,EAAE,IAAI;EACX,UAAU,EAAE,MAAM;CACrB",
     "sources": [
-        "Dashboard.scss"
+        "Dashboard.scss",
+        "_variables.scss"
     ],
     "names": [],
     "file": "Dashboard.css"
