@@ -24,3 +24,4 @@ export const logout = () => (dispatch, getState) => {
         .then(() => dispatch({ type: authConst.LOGOUT }))
         .catch(error => dispatch({ type: notificationConst.ERROR, payload: error.message }));
 };
+

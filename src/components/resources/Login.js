@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Field, reduxForm, SubmissionError } from 'redux-form';
 import { connect } from 'react-redux';
-import { loginAction, getUser } from '../../redux/actions';
+import { loginAction, getUser } from '../../redux/actions/auth.actions';
 // import { closeLoginModal } from '../methods/login';
 import '../css/Login.css';
 
