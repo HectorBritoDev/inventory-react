@@ -11,7 +11,7 @@
 }
 
 .sidebar__header {
-  padding: 0.3rem 0.5rem;
+  padding: 0.3rem 1rem;
   margin: 0;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .sidebar__item {
-  padding: 0.4rem 0.4rem 0.4rem 1.2rem;
+  padding: 0.4rem 0.4rem 0.4rem 1.5rem;
 }
 
 .sidebar__item--link {
