@@ -1,5 +1,5 @@
 import { authConst, notificationConst } from './types';
-import authAPI from '../../apis/authAPI';
+import authAPI from '../../apis/fetchAPI';
 
 
 
