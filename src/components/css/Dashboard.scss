@@ -1,10 +1,10 @@
 @import 'variables';
 
-.dashboard-top {
+.dashboard-activity {
     margin: 1rem;
 }
 
-.dashboard-top__items {
+.dashboard-activity__items {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -13,9 +13,45 @@
     border-bottom: 1px solid gray;
 }
 
-.dashboard-top__header {
-    display: block;
+.dashboard-header {
     font-size: 1.5rem;
     color: gray;
     text-align: center;
+}
+
+.dashboard-product {
+    margin: 1rem;
+}
+
+.dashboard-product__stadistics--details {
+    display: inline-block;
+    border: solid 1px grey;
+    padding: 0.5rem;
+}
+
+.dashboard-product__stadistics--details__header {
+    // color: grey;
+    border-bottom: solid 1px gray;
+    padding-bottom: 0.2rem;
+    font-weight: 700;
+}
+
+.dashboard-product__stadistics--details__table {
+    border-spacing: 0 0.5rem;
+
+    caption {
+        text-align: left;
+    }
+
+
+
+}
+
+.td {
+    padding: 0 0.2rem;
+    text-align: right;
+}
+
+.tr {
+    text-align: left;
 }
