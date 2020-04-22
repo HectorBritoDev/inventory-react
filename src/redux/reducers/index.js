@@ -3,8 +3,8 @@ import { reducer as formReducer } from 'redux-form';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'// defaults to localStorage for web
 // import storageSession from 'redux-persist/lib/storage/session' //Sessions storage
-import authReducer from './authReducer';
-import notificationReducer from './notificationReducer';
+import authReducer from './auth.reducer';
+import notificationReducer from './notification.reducer';
 const persistConfig = {
     key: 'root',
     storage,
