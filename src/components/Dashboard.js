@@ -45,6 +45,65 @@ class Dashboard extends React.Component {
                             </tbody>
                         </table>
                     </div>
+                    <div className="dashboard-product__stadistics">
+                        <div className="dashboard-product__stadistics--details">
+                            <table className="dashboard-product__stadistics--details__table">
+                                <caption className="dashboard-product__stadistics--details__header text-left">Lo mas vendido</caption>
+                                <tbody>
+                                    <tr>
+                                        <td className="primary">Producto 1</td>
+                                        <td className="strong text-right primary">1500</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="">Producto 2</td>
+                                        <td className="text-right strong">1200</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="">Producto 3</td>
+                                        <td className="text-right strong">900</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="">Producto 4</td>
+                                        <td className="text-right strong">500</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="">Producto 5</td>
+                                        <td className="text-right strong">200</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div className="dashboard-product__stadistics">
+
+                        <div className="dashboard-product__stadistics--details">
+                            <table className="dashboard-product__stadistics--details__table">
+                                <caption className="dashboard-product__stadistics--details__header text-left">Últimos agregados</caption>
+                                <tbody>
+                                    <tr>
+                                        <td className="primary">Producto E</td>
+                                        <td className="strong text-right primary">31/01/2020</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="">Producto D</td>
+                                        <td className="text-right strong">30/01/2020</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="">Producto C</td>
+                                        <td className="text-right strong">25/01/2020</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="">Producto B</td>
+                                        <td className="text-right strong">20/01/2020</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="">Producto A</td>
+                                        <td className="text-right strong">15/01/2020</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
