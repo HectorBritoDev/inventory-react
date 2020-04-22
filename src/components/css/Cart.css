@@ -1,1 +1,26 @@
-/* No CSS *//*# sourceMappingURL=Cart.css.map */
+.cart {
+  border: solid 1px gray;
+  margin: 0.5rem 0 0 0;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.cart-content {
+  text-align: center;
+}
+
+.cart-content__quantity {
+  font-size: 2rem;
+  color: #ff971d;
+}
+
+.cart-content__measure {
+  font-size: 0.8rem;
+  color: gray;
+}
+
+.cart-content__description {
+  margin: 0.5rem 0 0 0;
+  font-weight: 700;
+}
+/*# sourceMappingURL=Cart.css.map */
