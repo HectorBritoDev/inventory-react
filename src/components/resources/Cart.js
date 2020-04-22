@@ -9,8 +9,8 @@ const Cart = props => {
                 <div className="cart-title">{title}</div>
                 <div className="cart-content">
                     <div className="cart-content__quantity">{quantity}</div>
-                    <div className="cart-contert__measure">{measure}</div>
-                    <div className="cart-contert__description">{description}</div>
+                    <div className="cart-content__measure">{measure}</div>
+                    <div className="cart-content__description">{description}</div>
                 </div>
             </div>
 
