@@ -6,6 +6,7 @@ import storage from 'redux-persist/lib/storage'// defaults to localStorage for w
 import authReducer from './auth.reducer';
 import notificationReducer from './notification.reducer';
 import productReducer from './product.reducer';
+import saleReducer from './sale.reducer';
 
 const persistConfig = {
     key: 'root',
@@ -20,6 +21,7 @@ const authPersistConfig = {
 const reducers = combineReducers({
     auth: persistReducer(authPersistConfig, authReducer),
     products: productReducer,
+    sales: saleReducer,
     form: formReducer,
     notification: notificationReducer,
 });
