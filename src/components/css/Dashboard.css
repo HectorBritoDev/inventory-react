@@ -40,16 +40,7 @@
   border-spacing: 0 0.5rem;
 }
 
-.dashboard-product__stadistics--details__table caption {
-  text-align: left;
-}
-
-.td {
-  padding: 0 0.2rem;
-  text-align: right;
-}
-
-.tr {
-  text-align: left;
+.dashboard-product__stadistics--details__table td {
+  padding: 0 0.5rem;
 }
 /*# sourceMappingURL=Dashboard.css.map */

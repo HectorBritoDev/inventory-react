@@ -24,24 +24,23 @@ class Dashboard extends React.Component {
                 <div className="dashboard-product__stadistics">
                     <div className="dashboard-product__stadistics--details">
                         <table className="dashboard-product__stadistics--details__table">
-                            <caption className="dashboard-product__stadistics--details__header">Estadisticas</caption>
-
+                            <caption className="dashboard-product__stadistics--details__header text-left">Estadísticas</caption>
                             <tbody>
                                 <tr>
-                                    <td >Bajo stock</td>
-                                    <td className="td">3</td>
+                                    <td className="primary">Bajo stock</td>
+                                    <td className="text-right primary strong">3</td>
                                 </tr>
                                 <tr>
                                     <td >Categorias</td>
-                                    <td className="td">5</td>
+                                    <td className="text-right strong">5</td>
                                 </tr>
                                 <tr>
                                     <td >Productos en categorias</td>
-                                    <td className="td">150</td>
+                                    <td className="text-right strong">150000</td>
                                 </tr>
                                 <tr>
-                                    <td >Productos sin clasificar</td>
-                                    <td className="td">30</td>
+                                    <td className="primary">Productos sin clasificar</td>
+                                    <td className="text-right primary strong">30</td>
                                 </tr>
                             </tbody>
                         </table>

@@ -39,19 +39,8 @@
 .dashboard-product__stadistics--details__table {
     border-spacing: 0 0.5rem;
 
-    caption {
-        text-align: left;
+    td {
+        padding: 0 0.5rem;
     }
 
-
-
-}
-
-.td {
-    padding: 0 0.2rem;
-    text-align: right;
-}
-
-.tr {
-    text-align: left;
 }
