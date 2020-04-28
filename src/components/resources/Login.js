@@ -4,7 +4,7 @@ import { Field, reduxForm, SubmissionError } from 'redux-form';
 import { connect } from 'react-redux';
 import { loginAction, getUser } from '../../redux/actions/auth.actions';
 // import { closeLoginModal } from '../methods/login';
-import '../css/Login.css';
+import '../css/Login.scss';
 
 
 class Login extends React.Component {

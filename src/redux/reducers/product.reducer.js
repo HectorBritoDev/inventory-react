@@ -1,7 +1,7 @@
 import { productConst } from '../actions/types';
 
 const _INITIAL_STATE = {
-    all: {},
+    all: [],
     error: null
 }
 export default (state = _INITIAL_STATE, action) => {

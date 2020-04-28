@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './css/Header.css';
 import { Login, showLoginModal } from './resources/Login';
 import { logout, getUser } from '../redux/actions/auth.actions';
+import './css/Header.scss';
 
 class Header extends React.Component {
 

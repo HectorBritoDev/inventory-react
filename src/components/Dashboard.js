@@ -1,12 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Cart from './resources/Cart';
-import './css/Dashboard.css';
+import './css/Dashboard.scss';
 import { getAllProducts } from '../redux/actions/products.action';
 class Dashboard extends React.Component {
 
     componentDidMount() {
         this.props.getAllProducts();
+    }
+    calculateLowStock = () => {
+        const lowStock = this.props.products.all.filter((product) => {
+            return product.avaliable < 500;
+        });
+        return lowStock.length;
     }
     renderActivitySection = () => {
         return (
@@ -32,11 +38,11 @@ class Dashboard extends React.Component {
                             <tbody>
                                 <tr>
                                     <td className="primary">Bajo stock</td>
-                                    <td className="text-right primary strong">3</td>
+                                    <td className="text-right primary strong">{this.calculateLowStock()}</td>
                                 </tr>
                                 <tr>
                                     <td >Categorias</td>
-                                    <td className="text-right strong">5</td>
+                                    <td className="text-right strong">3</td>
                                 </tr>
                                 <tr>
                                     <td >Productos en categorias</td>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import history from '../history';
-import './css/App.css';
+import './css/App.scss';
 import Header from './Header';
 import Footer from './Footer';
 import Dashboard from './Dashboard';
