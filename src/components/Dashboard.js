@@ -1,18 +1,39 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { getAllProducts } from '../redux/actions/products.action';
+import { groupBy } from './helpers/methods';
 import Cart from './resources/Cart';
 import './css/Dashboard.scss';
-import { getAllProducts } from '../redux/actions/products.action';
 class Dashboard extends React.Component {
 
     componentDidMount() {
         this.props.getAllProducts();
     }
     calculateLowStock = () => {
-        const lowStock = this.props.products.all.filter((product) => {
-            return product.avaliable < 500;
+        const lowStock = this.props.products.filter((product) => {
+            return product.avaliable < 100;
         });
         return lowStock.length;
+    }
+    calculateProductsWithinCategories = () => {
+        return this.props.products.filter((product) => {
+            return product.category_url != null;
+        }).length;
+    }
+    calculateProductsWithoutCategories = () => {
+        // return Object.keys(this.props.products).include('category_url').length;
+
+        return this.props.products.filter((product) => {
+            return !Object.keys(product).includes('category_url');
+        }).length;
+    }
+    calculateTotalCategories = () => {
+        //groupBy method returns an object with all categories and the value
+        //Object.keys gets only the keys
+        let categories = Object.keys(groupBy(this.props.products, 'category_url'));
+        //remove the 'undefined' index comming from products without categories
+        categories.splice(categories.indexOf('undefined'), 1);
+        return categories.length;
     }
     renderActivitySection = () => {
         return (
@@ -42,15 +63,15 @@ class Dashboard extends React.Component {
                                 </tr>
                                 <tr>
                                     <td >Categorias</td>
-                                    <td className="text-right strong">3</td>
+                                    <td className="text-right strong">{this.calculateTotalCategories()}</td>
                                 </tr>
                                 <tr>
                                     <td >Productos en categorias</td>
-                                    <td className="text-right strong">150000</td>
+                                    <td className="text-right strong">{this.calculateProductsWithinCategories()}</td>
                                 </tr>
                                 <tr>
                                     <td className="primary">Productos sin clasificar</td>
-                                    <td className="text-right primary strong">30</td>
+                                    <td className="text-right primary strong">{this.calculateProductsWithoutCategories()}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -130,5 +151,5 @@ class Dashboard extends React.Component {
     }
 }
 
-const mapStateToProps = state => { return { products: state.products } }
+const mapStateToProps = state => { return { products: Object.values(state.products) } }
 export default connect(mapStateToProps, { getAllProducts })(Dashboard);
