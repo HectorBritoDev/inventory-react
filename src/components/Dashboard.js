@@ -43,7 +43,9 @@ class Dashboard extends React.Component {
         //Object.keys gets only the keys
         let categories = Object.keys(groupBy(this.props.products, 'category_url'));
         //remove the 'undefined' index comming from products without categories
-        categories.splice(categories.indexOf('undefined'), 1);
+        if (categories.indexOf('undefined') === 1) {
+            categories.splice(categories.indexOf('undefined'), 1);
+        }
         return categories.length;
     }
     renderActivitySection = () => {
