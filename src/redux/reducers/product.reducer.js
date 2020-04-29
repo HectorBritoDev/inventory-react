@@ -1,17 +1,11 @@
 import { productConst } from '../actions/types';
+import _ from 'lodash';
 
-const _INITIAL_STATE = {
-    all: [],
-    error: null
-}
-export default (state = _INITIAL_STATE, action) => {
+
+export default (state = {}, action) => {
     switch (action.type) {
         case productConst.GET_ALL_PRODUCTS:
-            return { ...state, all: action.payload }
-        case productConst.ERROR:
-            return { ...state, error: action.payload }
-        case productConst.CLEAN:
-            return { ...state, error: null }
+            return { ...state, ..._.mapKeys(action.payload, 'id') }
         default:
             return state;
     }
