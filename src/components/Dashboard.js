@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getAllProducts } from '../redux/actions/products.action';
-import { groupBy } from './helpers/methods';
+import { groupBy, orderBy } from './helpers/methods';
 import Cart from './resources/Cart';
 import './css/Dashboard.scss';
 class Dashboard extends React.Component {
@@ -9,9 +9,20 @@ class Dashboard extends React.Component {
     componentDidMount() {
         this.props.getAllProducts();
     }
+    calculateTopSellingProducts() {
+        const topProducts = [...this.props.products].sort(orderBy('total_units_sold', 'stadistics', 'desc')).slice(0, 5).map(function (product) {
+            return (
+                <tr key={product.id}>
+                    <td>{product.name}</td>
+                    <td>{product.stadistics.total_units_sold}</td>
+                </tr>
+            )
+        });
+        return topProducts;
+    }
     calculateLowStock = () => {
         const lowStock = this.props.products.filter((product) => {
-            return product.avaliable < 100;
+            return product.available < 100;
         });
         return lowStock.length;
     }
@@ -81,26 +92,7 @@ class Dashboard extends React.Component {
                             <table className="dashboard-product__stadistics--details__table">
                                 <caption className="dashboard-product__stadistics--details__header text-left">Lo mas vendido</caption>
                                 <tbody>
-                                    <tr>
-                                        <td className="primary">Producto 1</td>
-                                        <td className="strong text-right primary">1500</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="">Producto 2</td>
-                                        <td className="text-right strong">1200</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="">Producto 3</td>
-                                        <td className="text-right strong">900</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="">Producto 4</td>
-                                        <td className="text-right strong">500</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="">Producto 5</td>
-                                        <td className="text-right strong">200</td>
-                                    </tr>
+                                    {this.calculateTopSellingProducts()}
                                 </tbody>
                             </table>
                         </div>
