@@ -11,7 +11,7 @@ import saleReducer from './sale.reducer';
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist: ['auth', 'form', 'notification']
+    blacklist: ['auth', 'form', 'notification', 'products']
 }
 const authPersistConfig = {
     key: 'auth',
