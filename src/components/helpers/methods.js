@@ -14,12 +14,14 @@ export const groupBy = (array, key) => { //Key is the criteria to group
 }
 
 export const orderBy = (key, nestedObject = null, order = 'asc') => function innerSort(a, b) {
+    //check if the key exist in the object
     if (nestedObject != null && (!a[nestedObject].hasOwnProperty(key) || !b[nestedObject].hasOwnProperty(key))) {
         return 0;
     } else if (nestedObject == null && (!a.hasOwnProperty(key) || !b.hasOwnProperty(key))) {
         return 0;
     }
 
+    //key is inside a nestedObject? 
     const variableA = nestedObject ? a[nestedObject][key] : a[key];
     const variableB = nestedObject ? b[nestedObject][key] : b[key];
     let comparision = 0;
@@ -30,6 +32,7 @@ export const orderBy = (key, nestedObject = null, order = 'asc') => function inn
         comparision = -1;
     }
 
+    //If the order is desc multiplu * -1 to inver the order;
     return (order === 'desc') ? (comparision * -1) : comparision;
 
 }
