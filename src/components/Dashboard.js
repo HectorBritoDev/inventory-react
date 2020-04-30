@@ -9,22 +9,22 @@ class Dashboard extends React.Component {
     componentDidMount() {
         this.props.getAllProducts();
     }
-    calculateTopSellingProducts() {
-        const topProducts = [...this.props.products].sort(orderBy('total_units_sold', 'stadistics', 'desc')).slice(0, 5).map(function (product) {
-            return (
-                <tr key={product.id}>
-                    <td>{product.name}</td>
-                    <td>{product.stadistics.total_units_sold}</td>
-                </tr>
-            )
-        });
-        return topProducts;
-    }
+
     calculateLowStock = () => {
         const lowStock = this.props.products.filter((product) => {
             return product.available < 100;
         });
         return lowStock.length;
+    }
+    calculateTotalCategories = () => {
+        //groupBy method returns an object with all categories and the value
+        //Object.keys gets only the keys
+        let categories = Object.keys(groupBy(this.props.products, 'category_url'));
+        //remove the 'undefined' index comming from products without categories
+        if (categories.indexOf('undefined') === 1) {
+            categories.splice(categories.indexOf('undefined'), 1);
+        }
+        return categories.length;
     }
     calculateProductsWithinCategories = () => {
         return this.props.products.filter((product) => {
@@ -38,16 +38,34 @@ class Dashboard extends React.Component {
             return !Object.keys(product).includes('category_url');
         }).length;
     }
-    calculateTotalCategories = () => {
-        //groupBy method returns an object with all categories and the value
-        //Object.keys gets only the keys
-        let categories = Object.keys(groupBy(this.props.products, 'category_url'));
-        //remove the 'undefined' index comming from products without categories
-        if (categories.indexOf('undefined') === 1) {
-            categories.splice(categories.indexOf('undefined'), 1);
-        }
-        return categories.length;
+    calculateTopSellingProducts() {
+        const topProducts = [...this.props.products].sort(orderBy('total_units_sold', 'stadistics', 'desc'))
+            .slice(0, 5)
+            .map(function (product) {
+                return (
+                    <tr key={product.id}>
+                        <td>{product.name}</td>
+                        <td>{product.stadistics.total_units_sold}</td>
+                    </tr>
+                )
+            });
+        return topProducts;
     }
+    calculateLastPurchasedProducts() {
+        const lastPurchases = [...this.props.products].sort(orderBy('last_time_purchased', 'stadistics', 'asc'))
+            .slice(0, 5)
+            .reverse()
+            .map(function (product) {
+                return (
+                    <tr key={product.id}>
+                        <td>{product.name}</td>
+                        <td>{product.stadistics.last_time_purchased}</td>
+                    </tr>
+                );
+            });
+        return lastPurchases;
+    }
+
     renderActivitySection = () => {
         return (
             <div className="dashboard-activity">
@@ -104,28 +122,7 @@ class Dashboard extends React.Component {
                         <div className="dashboard-product__stadistics--details">
                             <table className="dashboard-product__stadistics--details__table">
                                 <caption className="dashboard-product__stadistics--details__header text-left">Últimos agregados</caption>
-                                <tbody>
-                                    <tr>
-                                        <td className="primary">Producto E</td>
-                                        <td className="strong text-right primary">31/01/2020</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="">Producto D</td>
-                                        <td className="text-right strong">30/01/2020</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="">Producto C</td>
-                                        <td className="text-right strong">25/01/2020</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="">Producto B</td>
-                                        <td className="text-right strong">20/01/2020</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="">Producto A</td>
-                                        <td className="text-right strong">15/01/2020</td>
-                                    </tr>
-                                </tbody>
+                                <tbody>{this.calculateLastPurchasedProducts()}</tbody>
                             </table>
                         </div>
                     </div>
