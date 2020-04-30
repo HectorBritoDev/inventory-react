@@ -9,6 +9,9 @@ class Dashboard extends React.Component {
     componentDidMount() {
         this.props.getAllProducts();
     }
+    calculateTotalUnitsSold = () => {
+        return [...this.props.products].reduce((accumulator, product) => { return accumulator + product.stadistics.total_units_sold }, 0);
+    }
 
     calculateLowStock = () => {
         const lowStock = this.props.products.filter((product) => {
@@ -71,7 +74,7 @@ class Dashboard extends React.Component {
             <div className="dashboard-activity">
                 <div className="dashboard-header">Actividad</div>
                 <div className="dashboard-activity__items">
-                    <Cart quantity="500" measure="unidades" description="vendidas" />
+                    <Cart quantity={this.calculateTotalUnitsSold()} measure="unidades" description="vendidas" />
                     <Cart quantity="500" measure="unidades" description=" vendidas" />
                     <Cart quantity="500" measure="unidades" description=" vendidas" />
                     <Cart quantity="500" measure="unidades" description=" vendidas" />
