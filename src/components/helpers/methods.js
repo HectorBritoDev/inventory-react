@@ -13,26 +13,39 @@ export const groupBy = (array, key) => { //Key is the criteria to group
     }, {});
 }
 
-export const orderBy = (key, nestedObject = null, order = 'asc') => function innerSort(a, b) {
-    //check if the key exist in the object
-    if (nestedObject != null && (!a[nestedObject].hasOwnProperty(key) || !b[nestedObject].hasOwnProperty(key))) {
-        return 0;
-    } else if (nestedObject == null && (!a.hasOwnProperty(key) || !b.hasOwnProperty(key))) {
-        return 0;
+export const orderBy = (key, nestedObject = null, order, aditionalFunction = null) => {
+    // console.log(aditionalFunction)
+    // const applyAditionalFunction = function (item) {
+    //     return aditionalFunction(item);
+    // }
+
+    return function innerSort(a, b) {
+        //check if the key exist in the object
+        if (nestedObject != null && (typeof (a[nestedObject]) === 'undefined' || !a[nestedObject].hasOwnProperty(key) || !b[nestedObject].hasOwnProperty(key))) {
+            return 0;
+        } else if (nestedObject == null && (!a.hasOwnProperty(key) || !b.hasOwnProperty(key))) {
+            return 0;
+        }
+
+        //key is inside a nestedObject? 
+        var variableA = nestedObject ? a[nestedObject][key] : a[key];
+        var variableB = nestedObject ? b[nestedObject][key] : b[key];
+
+        //apply aditional functions if exists
+        if (aditionalFunction) {
+            variableA = aditionalFunction(variableA);
+            variableB = aditionalFunction(variableB);
+        }
+
+        let comparision = 0;
+
+        if (variableA > variableB) {
+            comparision = 1;
+        } else if (variableA < variableB) {
+            comparision = -1;
+        }
+
+        //If the order is desc multiplu * -1 to inver the order;
+        return (order === 'desc') ? (comparision * -1) : comparision;
     }
-
-    //key is inside a nestedObject? 
-    const variableA = nestedObject ? a[nestedObject][key] : a[key];
-    const variableB = nestedObject ? b[nestedObject][key] : b[key];
-    let comparision = 0;
-
-    if (variableA > variableB) {
-        comparision = 1;
-    } else if (variableA < variableB) {
-        comparision = -1;
-    }
-
-    //If the order is desc multiplu * -1 to inver the order;
-    return (order === 'desc') ? (comparision * -1) : comparision;
-
 }
