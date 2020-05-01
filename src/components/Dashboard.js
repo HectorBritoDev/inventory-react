@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getAllProducts } from '../redux/actions/products.action';
-import { groupBy, orderBy } from './helpers/methods';
+import { groupBy, orderBy, mathSimpleOperation } from './helpers/methods';
 import Cart from './resources/Cart';
 import './css/Dashboard.scss';
 class Dashboard extends React.Component {
@@ -10,9 +10,12 @@ class Dashboard extends React.Component {
         this.props.getAllProducts();
     }
     calculateTotalUnitsSold = () => {
-        return [...this.props.products].reduce((accumulator, product) => { return accumulator + product.stadistics.total_units_sold }, 0);
+        return [...this.props.products].reduce(mathSimpleOperation('add', 'total_units_sold', 'stadistics'), 0);
     }
 
+    calculateAvailableStock = () => {
+        return [...this.props.products].reduce(mathSimpleOperation('add', 'available'), 0)
+    }
     calculateLowStock = () => {
         const lowStock = this.props.products.filter((product) => {
             return product.available < 100;
@@ -74,8 +77,8 @@ class Dashboard extends React.Component {
             <div className="dashboard-activity">
                 <div className="dashboard-header">Actividad</div>
                 <div className="dashboard-activity__items">
-                    <Cart quantity={this.calculateTotalUnitsSold()} measure="unidades" description="vendidas" />
-                    <Cart quantity="500" measure="unidades" description=" vendidas" />
+                    <Cart quantity={this.calculateTotalUnitsSold()} measure="productos" description="vendidos" />
+                    <Cart quantity={this.calculateAvailableStock()} measure="productos" description="en stock" />
                     <Cart quantity="500" measure="unidades" description=" vendidas" />
                     <Cart quantity="500" measure="unidades" description=" vendidas" />
                 </div>
