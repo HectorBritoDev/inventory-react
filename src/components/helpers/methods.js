@@ -54,6 +54,8 @@ export const mathSimpleOperation = (operation, key, nestedObject = null, ) => fu
             return accumulator += item[key];
         case 'sub':
             return accumulator -= item[key];
+        case 'mult':
+            return accumulator * item[key];
         default:
             return 'No operation match';
     }
