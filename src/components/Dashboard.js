@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getAllProducts } from '../redux/actions/products.action';
-import { groupBy, orderBy, mathSimpleOperation } from './helpers/methods';
+import { groupBy, orderBy, mathSimpleOperation, numberFormat } from './helpers/methods';
 import Cart from './resources/Cart';
 import './css/Dashboard.scss';
 class Dashboard extends React.Component {
@@ -10,22 +10,27 @@ class Dashboard extends React.Component {
         this.props.getAllProducts();
     }
     calculateTotalUnitsSold = () => {
-        return [...this.props.products].reduce(mathSimpleOperation('add', 'total_units_sold', 'stadistics'), 0);
+        let total = [...this.props.products].reduce(mathSimpleOperation('add', 'total_units_sold', 'stadistics'), 0);
+        return numberFormat(total);
     }
     calculateTotalAmmountSold = () => {
-        return [...this.props.products].reduce(mathSimpleOperation('add', 'total_price_sold_ever', 'stadistics'), 0);
+        let total = [...this.props.products].reduce(mathSimpleOperation('add', 'total_price_sold_ever', 'stadistics'), 0);
+        return numberFormat(total);
     }
     calculateTimesWithDiscount = () => {
-        return [...this.props.products].reduce(mathSimpleOperation('add', 'times_sold_with_discount', 'stadistics'), 0);
+        let times = [...this.props.products].reduce(mathSimpleOperation('add', 'times_sold_with_discount', 'stadistics'), 0);
+        return numberFormat(times);
     }
     calculateAvailableStock = () => {
-        return [...this.props.products].reduce(mathSimpleOperation('add', 'available'), 0)
+        let available = [...this.props.products].reduce(mathSimpleOperation('add', 'available'), 0)
+        return numberFormat(available);
+
     }
     calculateLowStock = () => {
         const lowStock = this.props.products.filter((product) => {
             return product.available < 100;
         });
-        return lowStock.length;
+        return numberFormat(lowStock.length);
     }
     calculateTotalCategories = () => {
         //groupBy method returns an object with all categories and the value
@@ -35,19 +40,20 @@ class Dashboard extends React.Component {
         if (categories.indexOf('undefined') === 1) {
             categories.splice(categories.indexOf('undefined'), 1);
         }
-        return categories.length;
+        return numberFormat(categories.length);
     }
     calculateProductsWithinCategories = () => {
-        return this.props.products.filter((product) => {
+        let total_products = this.props.products.filter((product) => {
             return product.category_url != null;
-        }).length;
+        });
+        return numberFormat(total_products.length);
     }
     calculateProductsWithoutCategories = () => {
-        // return Object.keys(this.props.products).include('category_url').length;
 
-        return this.props.products.filter((product) => {
+        let total_products = this.props.products.filter((product) => {
             return !Object.keys(product).includes('category_url');
-        }).length;
+        });
+        return numberFormat(total_products.length);
     }
     calculateTopSellingProducts() {
         const topProducts = [...this.props.products].sort(orderBy('total_units_sold', 'stadistics', 'desc'))
