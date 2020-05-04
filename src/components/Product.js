@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { getAllProducts } from '../redux/actions/products.action';
-
+import ProductModal from './resources/ProductModal';
 import './css/Product.scss';
 export class Product extends Component {
     componentDidMount() {
@@ -37,7 +37,9 @@ export class Product extends Component {
         return (
             <div className="product">
                 {this.renderTable()}
+                <ProductModal />
             </div>
+
         )
     }
 }
