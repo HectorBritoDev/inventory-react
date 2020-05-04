@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 
 export class ProductModal extends Component {
     render() {
@@ -10,6 +10,7 @@ export class ProductModal extends Component {
         )
     }
 }
+const formWrapped = reduxForm({ form: 'product', validate })(Login);
 
-export default ProductModal
+export default formWrapped;
 
