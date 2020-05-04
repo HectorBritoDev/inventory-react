@@ -1,0 +1,27 @@
+.product {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #fff;
+}
+
+.table {
+  border-spacing: 1rem;
+  border: solid 1px black;
+}
+
+.table__thead th {
+  text-align: center;
+  border: solid 1px black;
+}
+
+.table__tbody td {
+  text-align: center;
+}
+/*# sourceMappingURL=Product.css.map */

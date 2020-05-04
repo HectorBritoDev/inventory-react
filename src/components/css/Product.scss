@@ -1,0 +1,27 @@
+@import'variables';
+
+.product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: map-get($colors, $key: general-background);
+}
+
+.table {
+    border-spacing: 1rem;
+    border: solid 1px black;
+
+}
+
+.table__thead {
+    th {
+        text-align: center;
+        border: solid 1px black
+    }
+}
+
+.table__tbody {
+    td {
+        text-align: center;
+    }
+}
