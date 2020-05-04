@@ -12,7 +12,12 @@ class Dashboard extends React.Component {
     calculateTotalUnitsSold = () => {
         return [...this.props.products].reduce(mathSimpleOperation('add', 'total_units_sold', 'stadistics'), 0);
     }
-
+    calculateTotalAmmountSold = () => {
+        return [...this.props.products].reduce(mathSimpleOperation('add', 'total_price_sold_ever', 'stadistics'), 0);
+    }
+    calculateTimesWithDiscount = () => {
+        return [...this.props.products].reduce(mathSimpleOperation('add', 'times_sold_with_discount', 'stadistics'), 0);
+    }
     calculateAvailableStock = () => {
         return [...this.props.products].reduce(mathSimpleOperation('add', 'available'), 0)
     }
@@ -78,9 +83,9 @@ class Dashboard extends React.Component {
                 <div className="dashboard-header">Actividad</div>
                 <div className="dashboard-activity__items">
                     <Cart quantity={this.calculateTotalUnitsSold()} measure="productos" description="vendidos" />
-                    <Cart quantity={this.calculateAvailableStock()} measure="productos" description="en stock" />
-                    <Cart quantity="500" measure="unidades" description=" vendidas" />
-                    <Cart quantity="500" measure="unidades" description=" vendidas" />
+                    <Cart quantity={this.calculateAvailableStock()} measure="productos" description="en almacen" />
+                    <Cart quantity={this.calculateTotalAmmountSold()} measure="dólares" description="en productos vendidos" />
+                    <Cart quantity={this.calculateTimesWithDiscount()} measure="productos" description="vendidos con descuento" />
                 </div>
             </div>
         );
