@@ -61,3 +61,15 @@ export const mathSimpleOperation = (operation, key, nestedObject = null, ) => fu
     }
 
 }
+
+export const numberFormat = num => {
+    return num
+        .toString()
+        .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+}
+export const currencyFormat = num => {
+    return num
+        .toFixed(2) //Always 2 decimals,
+        .replace('.', ',')
+        .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+}
