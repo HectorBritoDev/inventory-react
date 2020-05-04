@@ -8,10 +8,10 @@ export class ProductModal extends Component {
             <div>
                 New Product Modal
             </div>,
-            document.querySelector('#product-modal'))
+            document.querySelector('#product-modal'));
     }
 }
-const formWrapped = reduxForm({ form: 'product', validate })(Login);
+const formWrapped = reduxForm({ form: 'product' })(ProductModal);
 
 export default formWrapped;
 
