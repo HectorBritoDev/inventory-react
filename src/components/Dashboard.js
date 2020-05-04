@@ -62,7 +62,7 @@ class Dashboard extends React.Component {
                 return (
                     <tr key={product.id}>
                         <td>{product.name}</td>
-                        <td>{product.stadistics.total_units_sold}</td>
+                        <td>{numberFormat(product.stadistics.total_units_sold)}</td>
                     </tr>
                 )
             });
