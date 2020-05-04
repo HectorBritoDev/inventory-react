@@ -5,6 +5,7 @@ import './css/App.scss';
 import Header from './Header';
 import Footer from './Footer';
 import Dashboard from './Dashboard';
+import Product from './Product';
 import Sidebar from './Sidebar';
 // import Sidebar from './Sidebar';
 
@@ -24,7 +25,7 @@ const App = () => {
                         <Route path="/purchases/create" exact component={Dashboard} />
                         <Route path="/categories" exact component={Dashboard} />
                         <Route path="/categories/create" exact component={Dashboard} />
-                        <Route path="/products" exact component={Dashboard} />
+                        <Route path="/products" exact component={Product} />
                         <Route path="/products/create" exact component={Dashboard} />
                     </Switch>
                 </main>
