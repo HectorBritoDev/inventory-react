@@ -31,3 +31,11 @@
 .show {
     display: block !important;
 }
+
+.text-error {
+    color: red;
+}
+
+.input-error {
+    border-bottom: solid 2px red !important;
+}
