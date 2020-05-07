@@ -34,6 +34,10 @@ export class Product extends Component {
                             <td>500</td>
                             <td>5.000</td>
                             <td>4.000</td>
+                            <td>
+                                <button>Modificar</button>
+                                <button>eliminar</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
