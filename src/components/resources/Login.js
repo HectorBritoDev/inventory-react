@@ -85,8 +85,8 @@ const closeLoginModal = () => {
 const showLoginModal = () => {
     const login_modal = document.querySelector('.login-modal');
     const backdrop = document.querySelector('.backdrop');
-    login_modal.classList.add('show');
-    backdrop.classList.add('show');
+    login_modal.classList.add('show-login');
+    backdrop.classList.add('show-login');
     document.querySelector('#login-email').focus();
 }
 const validate = formValues => {
