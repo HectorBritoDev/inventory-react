@@ -37,12 +37,12 @@ export class ProductModal extends Component {
     render() {
         return ReactDOM.createPortal(
             <div className="modal" >
-                <div className="modal-background" onClick={closeModal}></div>
+                <div className="modal-background" onClick={this.resetAndCloseModal}></div>
                 <div className="modal-body">
                     <div className="modal-title">Producto</div>
                     <div className="modal-content">
-                        <form>
-                            <Field name="code" id="code" type="text" placeholder="Código" component={this.renderInput} applyClass="modal-input" />
+                        <form onSubmit={this.props.handleSubmit(this.onSubmitForm)}>
+                            <Field name="code" id="code" type="text" placeholder="Código (opcional)" component={this.renderInput} applyClass="modal-input" />
                             <Field name="name" id="name" type="text" placeholder="Nombre" component={this.renderInput} applyClass="modal-input" />
                             <Field name="quantity" id="quantity" type="text" placeholder="Cantidad" component={this.renderInput} applyClass="modal-input" />
                             <Field name="unitary_price" id="unitary_price" type="text" placeholder="Precio Unitario" component={this.renderInput} applyClass="modal-input" />
@@ -57,7 +57,34 @@ export class ProductModal extends Component {
             document.querySelector('#product-modal'));
     }
 }
-const formWrapped = reduxForm({ form: 'product' })(ProductModal);
+
+const validate = formValues => {
+    const errors = {};
+    if (!formValues.name) {
+        errors.name = 'Debes ingresar un nombre';
+    }
+    if (isNaN(formValues.quantity)) {
+        errors.quantity = 'Ingresa un numero';
+    }
+    if (!formValues.quantity) {
+        errors.quantity = 'Debes ingresar una cantidad';
+    }
+
+    if (isNaN(formValues.unitary_price)) {
+        errors.unitary_price = "Ingresa un número"
+    }
+    if (!formValues.unitary_price) {
+        errors.unitary_price = 'Ingresa un precio';
+    }
+
+    if (parseInt(formValues.unitary_price) < 0) {
+        errors.unitary_price = "La cantidad tiene que ser superior a 0";
+    }
+
+    return errors;
+
+};
+const formWrapped = reduxForm({ form: 'product', validate })(ProductModal);
 
 export default formWrapped;
 
