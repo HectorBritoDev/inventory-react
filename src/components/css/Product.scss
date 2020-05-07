@@ -7,16 +7,33 @@
     background-color: map-get($colors, $key: general-background);
 }
 
+.product-list {
+    border: solid 1px black
+}
+
+.product-list__options {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0.5rem 0;
+}
+
+.product-list__button {
+    outline: none;
+    background-color: map-get($colors, primary);
+    color: map-get($colors, general-background);
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0 1rem;
+}
+
 .table {
     border-spacing: 1rem;
-    border: solid 1px black;
 
 }
 
 .table__thead {
     th {
         text-align: center;
-        border: solid 1px black
     }
 }
 
