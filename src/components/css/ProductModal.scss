@@ -1,4 +1,12 @@
-@import 'variables';
+@import 'general_classes';
+
+// #product-modal {
+//     z-index: 100;
+// }
+
+.modal {
+    display: none;
+}
 
 .modal-background {
     position: fixed;
@@ -6,13 +14,12 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: map-get($colors, background-contrast);
+    background-color: rgba($color: map-get($colors, secondary), $alpha: 0.7);
     z-index: 100;
 }
 
 
 .modal-body {
-
     position: fixed;
     top: 29%;
     left: 35%;
@@ -25,6 +32,8 @@
 
     display: grid;
     grid-template-rows: 2rem 1fr;
+    background-color: map-get($colors, general-background);
+
 }
 
 .modal-title {
@@ -38,6 +47,7 @@
 .modal-input {
     width: 100%;
     border: none;
+    outline: none;
     background-color: transparent;
 
     font-size: 1rem;
@@ -46,4 +56,14 @@
     &:focus {
         border-bottom: solid 2px map-get($colors, primary);
     }
+}
+
+.modal-submit-button {
+    margin-top: 1rem;
+    width: 100%;
+    color: map-get($colors, general-background);
+    background-color: map-get($colors, primary);
+    outline: none;
+    border: none;
+    padding: 0.7rem 0;
 }
