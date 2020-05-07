@@ -25,6 +25,15 @@ export class ProductModal extends Component {
         );
     }
 
+    onSubmitForm = formValues => {
+        console.log('success');
+    };
+
+    resetAndCloseModal = () => {
+        this.props.reset();
+        closeModal();
+    };
+
     render() {
         return ReactDOM.createPortal(
             <div className="modal" >
