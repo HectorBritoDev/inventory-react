@@ -5,6 +5,11 @@ import { closeModal } from '../helpers/methods';
 import '../css/ProductModal.scss';
 
 export class ProductModal extends Component {
+    renderError = ({ error, touched }) => {
+        if (error && touched) {
+            return <span className="text-error">{error}</span>
+        }
+    }
     renderInput = ({ input, id, type, placeholder = '', applyClass = '', autoFocus = "false", meta }) => {
         return (
             <React.Fragment>
