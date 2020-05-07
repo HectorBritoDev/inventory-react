@@ -19,7 +19,7 @@ class Login extends React.Component {
     }
     renderError = ({ error, touched }) => {
         if (error && touched) {
-            return <span style={{ color: "red" }}>{error}</span>
+            return <span className="text-error">{error}</span>
         }
     }
 
