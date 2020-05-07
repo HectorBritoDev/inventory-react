@@ -81,4 +81,5 @@ export const closeModal = () => {
 export const showModal = () => {
     const modal = document.querySelector('.modal');
     modal.classList.add('show');
+    document.querySelector('.modal-input').form[0].focus()
 }
