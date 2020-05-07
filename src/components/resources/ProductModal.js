@@ -13,7 +13,14 @@ export class ProductModal extends Component {
     renderInput = ({ input, id, type, placeholder = '', applyClass = '', autoFocus = "false", meta }) => {
         return (
             <React.Fragment>
-                <input {...input} id={id} type={type} placeholder={placeholder} className={applyClass} autoComplete="off" autoFocus={autoFocus !== 'false' ? true : false} />
+                <input {...input}
+                    id={id}
+                    type={type}
+                    placeholder={placeholder}
+                    className={`${applyClass}  ${(meta.error && meta.touched) ? 'input-error' : ''}`}
+                    autoComplete="off"
+                    autoFocus={autoFocus !== 'false' ? true : false} />
+                {this.renderError(meta)}
             </React.Fragment>
         );
     }
