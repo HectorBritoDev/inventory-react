@@ -73,3 +73,12 @@ export const currencyFormat = num => {
         .replace('.', ',')
         .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
 }
+
+export const closeModal = () => {
+    const modal = document.querySelector('.modal');
+    modal.classList.remove('show');
+}
+export const showModal = () => {
+    const modal = document.querySelector('.modal');
+    modal.classList.add('show');
+}
