@@ -15,6 +15,7 @@ export const notificationConst = {
 
 export const productConst = {
     GET_ALL_PRODUCTS: 'GET_ALL_PRODUCTS',
+    STORE_PRODUCT: 'STORE_PRODUCT',
     CLEAN: 'PRODUCTS_CLEAN',
     ERROR: 'PRODUCTS_ERROR'
 }
