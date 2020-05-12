@@ -35,17 +35,13 @@ export class ProductModal extends Component {
     };
 
     render() {
-        return ReactDOM.createPortal(
-            <div className="modal" >
-                <div className="modal-background" onClick={this.resetAndCloseModal}></div>
-                <div className="modal-body">
-                    <div className="modal-title">Producto</div>
-                    <div className="modal-content">
-                        <form onSubmit={this.props.handleSubmit(this.onSubmitForm)}>
-                            <Field name="code" id="code" type="text" placeholder="Código (opcional)" component={this.renderInput} applyClass="modal-input" />
-                            <Field name="name" id="name" type="text" placeholder="Nombre" component={this.renderInput} applyClass="modal-input" />
-                            <Field name="quantity" id="quantity" type="text" placeholder="Cantidad" component={this.renderInput} applyClass="modal-input" />
-                            <Field name="unitary_price" id="unitary_price" type="text" placeholder="Precio Unitario" component={this.renderInput} applyClass="modal-input" />
+        return (
+            <ModalTemplate target='#product-modal' closeModal={this.resetAndCloseModal} title="Producto">
+                <form onSubmit={this.props.handleSubmit(this.onSubmitForm)}>
+                    <Field name="code" id="code" type="text" placeholder="Código (opcional)" component={this.renderInput} applyClass="modal-input" />
+                    <Field name="name" id="name" type="text" placeholder="Nombre" component={this.renderInput} applyClass="modal-input" />
+                    <Field name="quantity" id="quantity" type="text" placeholder="Cantidad" component={this.renderInput} applyClass="modal-input" />
+                    <Field name="unitary_price" id="unitary_price" type="text" placeholder="Precio Unitario" component={this.renderInput} applyClass="modal-input" />
                             <Field name="mayotary_price" id="mayotary_price" type="text" placeholder="Precio Mayoritario" component={this.renderInput} applyClass="modal-input" />
                             <Field name="apply_mayoritary_price_sice" id="apply_mayoritary_price_sice" type="text" placeholder="Aplicar precio mayoritario a partir de" component={this.renderInput} applyClass="modal-input" />
                             <Field name="category" id="category" type="text" placeholder="Categoria" component={this.renderInput} applyClass="modal-input" />
