@@ -7,3 +7,13 @@ export const getAllProducts = () => (dispatch, getState) => {
         .catch(error => dispatch({ type: productConst.ERROR, payload: error }));
 
 }
+
+export const storeProduct = formValues => (dispatch, getState) => {
+    fetchAPI.post('/products', formValues)
+        .then(response => dispatch({ type: productConst.STORE_PRODUCT, payload: response.data }))
+        .catch(error => handleError(error, dispatch))
+}
+
+function handleError(error, dispatch) {
+    return dispatch({ type: productConst.ERROR, payload: error });
+}
