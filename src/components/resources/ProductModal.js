@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { closeModal } from '../helpers/methods';
+import { storeProduct } from '../../redux/actions/products.action';
+import ModalTemplate from './ModalTemplate';
 import '../css/ProductModal.scss';
 
 export class ProductModal extends Component {
@@ -27,6 +29,7 @@ export class ProductModal extends Component {
 
     onSubmitForm = formValues => {
         console.log('success');
+        this.props.storeProduct(formValues);
     };
 
     resetAndCloseModal = () => {
@@ -42,15 +45,13 @@ export class ProductModal extends Component {
                     <Field name="name" id="name" type="text" placeholder="Nombre" component={this.renderInput} applyClass="modal-input" />
                     <Field name="quantity" id="quantity" type="text" placeholder="Cantidad" component={this.renderInput} applyClass="modal-input" />
                     <Field name="unitary_price" id="unitary_price" type="text" placeholder="Precio Unitario" component={this.renderInput} applyClass="modal-input" />
-                            <Field name="mayotary_price" id="mayotary_price" type="text" placeholder="Precio Mayoritario" component={this.renderInput} applyClass="modal-input" />
-                            <Field name="apply_mayoritary_price_sice" id="apply_mayoritary_price_sice" type="text" placeholder="Aplicar precio mayoritario a partir de" component={this.renderInput} applyClass="modal-input" />
-                            <Field name="category" id="category" type="text" placeholder="Categoria" component={this.renderInput} applyClass="modal-input" />
-                            <button type="submit" className="modal-submit-button">Agregar</button>
-                        </form>
-                    </div>
-                </div>
-            </div>,
-            document.querySelector('#product-modal'));
+                    <Field name="mayoritary_price" id="mayoritary_price" type="text" placeholder="Precio Mayoritario" component={this.renderInput} applyClass="modal-input" />
+                    <Field name="apply_mayoritary_price_since" id="apply_mayoritary_price_since" type="text" placeholder="Aplicar precio mayoritario a partir de" component={this.renderInput} applyClass="modal-input" />
+                    <Field name="category" id="category" type="text" placeholder="Categoria" component={this.renderInput} applyClass="modal-input" />
+                    <button type="submit" className="modal-submit-button">Agregar</button>
+                </form>
+            </ModalTemplate>
+        )
     }
 }
 
@@ -82,5 +83,5 @@ const validate = formValues => {
 };
 const formWrapped = reduxForm({ form: 'product', validate })(ProductModal);
 
-export default formWrapped;
+export default connect(null, { storeProduct })(formWrapped);
 
