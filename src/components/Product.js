@@ -20,11 +20,13 @@ export class Product extends Component {
                 columns: [
                     {
                         Header: "Nombre",
-                        accessor: "name"
+                        accessor: "name",
+                        sortType: "basic"
                     },
                     {
                         Header: "Cantidad",
-                        accessor: "available"
+                        accessor: "available",
+                        sortType: "basic"
                     },
 
 
