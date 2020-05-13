@@ -1,12 +1,14 @@
 import React from 'react'
-import { useTable, usePagination } from 'react-table';
+import { useTable, usePagination, useSortBy } from 'react-table';
 
 const Table = ({ columns, data }) => {
     const {
+        // Table props
         getTableProps,
         getTableBodyProps,
         headerGroups,
         prepareRow,
+        // Pagination props
         page,
         canPreviousPage,
         canNextPage,
@@ -17,16 +19,26 @@ const Table = ({ columns, data }) => {
         previousPage,
         setPageSize,
         state: { pageIndex, pageSize }
-    } = useTable({ columns, data, initialState: { pageIndex: 0 } }, usePagination);
+    } = useTable(
+        { columns, data, initialState: { pageIndex: 0 } },
+        useSortBy,
+        usePagination
+    );
 
     return (
         <>
+            {/* Table */}
             <table {...getTableProps()}>
                 <thead>
                     {headerGroups.map(headerGroup => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map(column => (
-                                <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+                                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                                    {column.render("Header")}
+                                    <span>
+                                        {column.isSorted ? (column.isSortedDesc ? " ▲" : " ▼") : ""}
+                                    </span>
+                                </th>
                             ))}
                         </tr>
                     ))}
@@ -45,6 +57,7 @@ const Table = ({ columns, data }) => {
                     })}
                 </tbody>
             </table>
+            {/* Pagination Buttons */}
             <div>
                 <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
                     {"<<"}
