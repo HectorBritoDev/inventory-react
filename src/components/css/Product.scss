@@ -2,6 +2,7 @@
 
 .product {
     display: flex;
+    flex-flow: column;
     justify-content: center;
     align-items: center;
     background-color: map-get($colors, $key: general-background);
