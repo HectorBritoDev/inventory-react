@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 class ModalTemplate extends Component {
     render() {
         return ReactDOM.createPortal(
-            <div className="modal" >
+            <div className="modal" id={this.props.id}>
                 <div className="modal-background" onClick={this.props.closeModal}></div>
                 <div className="modal-body">
                     <div className="modal-title">{this.props.title}</div>
