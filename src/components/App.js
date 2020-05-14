@@ -6,7 +6,6 @@ import Header from './Header';
 import Footer from './Footer';
 import Dashboard from './Dashboard';
 import Product from './Product';
-import ProductModal from './resources/ProductModal';
 import Sidebar from './Sidebar';
 // import Sidebar from './Sidebar';
 

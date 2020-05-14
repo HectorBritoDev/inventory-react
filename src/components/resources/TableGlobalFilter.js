@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TableGlobalFilter = ({ prepareGlobalFilteredRows, globalFilter, setGlobalFilter }) => {
-    const count = prepareGlobalFilteredRows && prepareGlobalFilteredRows.length;
+    // const count = prepareGlobalFilteredRows && prepareGlobalFilteredRows.length;
     return (
         <span>
             Buscar: {" "}

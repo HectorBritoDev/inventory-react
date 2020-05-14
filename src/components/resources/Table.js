@@ -3,6 +3,7 @@ import { useTable, useSortBy, useFilters, useGlobalFilter, usePagination } from 
 import TableGlobalFilter from './TableGlobalFilter';
 import '../css/Table.scss';
 
+//Default Filter input per Row - Diferent from Global filter
 const DefaultColumnFilter = ({
     column: { filterValue, preFilteredRows, setFilter }
 }) => {
@@ -47,7 +48,7 @@ const Table = ({ columns, data, title }) => {
         prepareRow,
         state,
         //Filter props
-        visibleColumns,
+        // visibleColumns,
         prepareGlobalFilteredRows,
         setGlobalFilter,
         // Pagination props
