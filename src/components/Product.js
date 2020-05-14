@@ -21,12 +21,13 @@ export class Product extends Component {
                     {
                         Header: "Nombre",
                         accessor: "name",
-                        sortType: "basic"
+                        sortType: "basic",
+                        filter: "text"
                     },
                     {
                         Header: "Cantidad",
                         accessor: "available",
-                        sortType: "basic"
+                        sortType: "basic",
                     },
 
 
