@@ -6,6 +6,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Dashboard from './Dashboard';
 import Product from './Product';
+import ProductModal from './resources/ProductModal';
 import Sidebar from './Sidebar';
 // import Sidebar from './Sidebar';
 
@@ -26,7 +27,7 @@ const App = () => {
                         <Route path="/categories" exact component={Dashboard} />
                         <Route path="/categories/create" exact component={Dashboard} />
                         <Route path="/products" exact component={Product} />
-                        <Route path="/products/create" exact component={Dashboard} />
+                        {/* <Route path="/products/create" exact component={ProductModal} /> */}
                     </Switch>
                 </main>
                 <Footer />
