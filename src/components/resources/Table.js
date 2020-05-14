@@ -1,6 +1,8 @@
 import React from 'react'
 import { useTable, useSortBy, useFilters, useGlobalFilter, usePagination } from 'react-table';
 import TableGlobalFilter from './TableGlobalFilter';
+import '../css/Table.scss';
+
 const DefaultColumnFilter = ({
     column: { filterValue, preFilteredRows, setFilter }
 }) => {
@@ -17,7 +19,7 @@ const DefaultColumnFilter = ({
 };
 
 
-const Table = ({ columns, data }) => {
+const Table = ({ columns, data, title }) => {
     const filterTypes = React.useMemo(
         () => ({
             text: (rows, id, filterValue) => {
@@ -69,18 +71,41 @@ const Table = ({ columns, data }) => {
 
     return (
         <>
+            <div className="table-title">
+                {title}
+            </div>
+            <div className="table-options">
+                <TableGlobalFilter
+                    prepareGlobalFilteredRows={prepareGlobalFilteredRows}
+                    globalFilter={state.globalFilter}
+                    setGlobalFilter={setGlobalFilter}
+                />
+                <span>
+
+                    Mostrar{" "}
+                    <select
+                        value={pageSize}
+                        onChange={e => {
+                            setPageSize(Number(e.target.value));
+                        }}
+                        className="table-select"
+                    >
+                        {[10, 20, 30, 40, 50].map(pageSize => {
+                            return <option key={pageSize} value={pageSize}>{pageSize}</option>
+                        })}
+                    </select>
+                </span>
+            </div>
+
             {/* Table */}
-            <table {...getTableProps()}>
-                <thead>
-                    <tr>
+            <table {...getTableProps()} className="table">
+                <thead className="table__thead">
+                    {/* <tr>
                         <th colSpan={visibleColumns.length} style={{ textAling: "left" }}>
-                            <TableGlobalFilter
-                                prepareGlobalFilteredRows={prepareGlobalFilteredRows}
-                                globalFilter={state.globalFilter}
-                                setGlobalFilter={setGlobalFilter}
-                            />
                         </th>
-                    </tr>
+                        
+                    </tr> */}
+
                     {headerGroups.map(headerGroup => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map(column => (
@@ -95,7 +120,7 @@ const Table = ({ columns, data }) => {
                         </tr>
                     ))}
                 </thead>
-                <tbody {...getTableBodyProps()}>
+                <tbody {...getTableBodyProps()} className="table__tbody">
                     {page.map((row, i) => {
                         prepareRow(row);
                         return (
@@ -109,47 +134,45 @@ const Table = ({ columns, data }) => {
                 </tbody>
             </table>
             {/* Pagination Buttons */}
-            <div>
-                <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-                    {"<<"}
-                </button>{" "}
-                <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-                    {"<"}
-                </button>{" "}
-                <button onClick={() => nextPage()} disabled={!canNextPage}>
-                    {">"}
-                </button>{" "}
-                <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-                    {">>"}
-                </button>{" "}
-                <span>
-                    Pagina{" "}
-                    <strong>
-                        {pageIndex + 1} of {pageOptions.length}
-                    </strong>{" "}
-                </span>
-                <span>
-                    | Ir a página:{" "}
-                    <input
-                        type="number"
-                        defaultValue={pageIndex + 1}
-                        onChange={e => {
-                            const page = e.target.value ? Number(e.target.value) - 1 : 0;
-                            gotoPage(page);
-                        }}
-                        style={{ width: "100px" }}
-                    />
-                </span>{""}
-                <select
-                    value={pageSize}
-                    onChange={e => {
-                        setPageSize(Number(e.target.value));
-                    }}
-                >
-                    {[10, 20, 30, 40, 50].map(pageSize => {
-                        return <option key={pageSize} value={pageSize}>Mostrar {pageSize}</option>
-                    })}
-                </select>
+            <div className="pagination">
+                <div className="pagination-buttons">
+
+                    <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+                        {"<<"}
+                    </button>{" "}
+                    <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+                        {"<"}
+                    </button>{" "}
+                    <button onClick={() => nextPage()} disabled={!canNextPage}>
+                        {">"}
+                    </button>{" "}
+                    <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+                        {">>"}
+                    </button>{" "}
+                    <span>
+                        Pagina{" "}
+                        <strong>
+                            {pageIndex + 1} of {pageOptions.length}
+                        </strong>{" "}
+                    </span>
+                </div>
+                <div className="pagination-gotoPage">
+
+                    <span>
+                        Ir a página:{" "}
+                        <input
+                            type="number"
+                            defaultValue={pageIndex + 1}
+                            onChange={e => {
+                                const page = e.target.value ? Number(e.target.value) - 1 : 0;
+                                gotoPage(page);
+                            }}
+                            className="pagination-info__gotoPage"
+                        />
+                    </span>{""}
+
+                </div>
+
             </div>
         </>
     );
