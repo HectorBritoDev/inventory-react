@@ -19,10 +19,14 @@ export class Product extends Component {
                 Header: "Listado de Productos",
                 columns: [
                     {
+                        Header: "ID",
+                        accessor: "id",
+                        sortType: "basic",
+                    },
+                    {
                         Header: "Nombre",
                         accessor: "name",
                         sortType: "basic",
-                        filter: "text"
                     },
                     {
                         Header: "Cantidad",
@@ -31,18 +35,19 @@ export class Product extends Component {
                     },
 
 
+
                 ],
             }
         ];
 
         return (
-            // <div className="product-list">
-            //     <div className="product-list__options">
+            <div className="product-list">
+                <div className="product-list__options">
 
-            //         <button className="product-list__button" onClick={showModal}>Agregar producto</button>
-            //     </div>
-            <Table columns={columns} data={products} />
-            // </div>
+                    <button className="product-list__button" onClick={showModal}>Agregar producto</button>
+                </div>
+                <Table columns={columns} data={products} />
+            </div>
         );
     }
     render() {
