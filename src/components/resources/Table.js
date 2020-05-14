@@ -1,13 +1,53 @@
 import React from 'react'
-import { useTable, usePagination, useSortBy } from 'react-table';
+import { useTable, useSortBy, useFilters, useGlobalFilter, usePagination } from 'react-table';
+import TableGlobalFilter from './TableGlobalFilter';
+const DefaultColumnFilter = ({
+    column: { filterValue, preFilteredRows, setFilter }
+}) => {
+    const count = preFilteredRows.length;
+    return (
+        <input
+            value={filterValue || ""}
+            onChange={e => {
+                setFilter(e.target.value || undefined);
+            }}
+            placeholder={`Buscar entre ${count} registros...`}
+        />
+    );
+};
+
 
 const Table = ({ columns, data }) => {
+    const filterTypes = React.useMemo(
+        () => ({
+            text: (rows, id, filterValue) => {
+                return rows.filter(row => {
+                    const rowValue = row.values[id];
+                    return rowValue !== undefined
+                        ? String(rowValue).toLowerCase().startsWith(String(filterValue).toLowerCase())
+                        : true;
+                });
+            }
+        }),
+        []
+    );
+    const defaultColumn = React.useMemo(
+        () => ({
+            Filter: DefaultColumnFilter
+        }),
+        []
+    );
     const {
         // Table props
         getTableProps,
         getTableBodyProps,
         headerGroups,
         prepareRow,
+        state,
+        //Filter props
+        visibleColumns,
+        prepareGlobalFilteredRows,
+        setGlobalFilter,
         // Pagination props
         page,
         canPreviousPage,
@@ -20,7 +60,9 @@ const Table = ({ columns, data }) => {
         setPageSize,
         state: { pageIndex, pageSize }
     } = useTable(
-        { columns, data, initialState: { pageIndex: 0 } },
+        { columns, data, defaultColumn, filterTypes, initialState: { pageIndex: 0 } },
+        useFilters,
+        useGlobalFilter,
         useSortBy,
         usePagination
     );
@@ -30,6 +72,15 @@ const Table = ({ columns, data }) => {
             {/* Table */}
             <table {...getTableProps()}>
                 <thead>
+                    <tr>
+                        <th colSpan={visibleColumns.length} style={{ textAling: "left" }}>
+                            <TableGlobalFilter
+                                prepareGlobalFilteredRows={prepareGlobalFilteredRows}
+                                globalFilter={state.globalFilter}
+                                setGlobalFilter={setGlobalFilter}
+                            />
+                        </th>
+                    </tr>
                     {headerGroups.map(headerGroup => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map(column => (
@@ -38,12 +89,12 @@ const Table = ({ columns, data }) => {
                                     <span>
                                         {column.isSorted ? (column.isSortedDesc ? " ▲" : " ▼") : ""}
                                     </span>
+                                    {/* <div>{column.canFilter ? column.render("Filter") : null}</div> */}
                                 </th>
                             ))}
                         </tr>
                     ))}
                 </thead>
-
                 <tbody {...getTableBodyProps()}>
                     {page.map((row, i) => {
                         prepareRow(row);
