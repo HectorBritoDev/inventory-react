@@ -15,46 +15,48 @@ export class Product extends Component {
             return <div>Cargando...</div>
         }
         const columns = [
+
             {
-                Header: "Listado de Productos",
-                columns: [
-                    {
-                        Header: "ID",
-                        accessor: "id",
-                        sortType: "basic",
-                    },
-                    {
-                        Header: "Nombre",
-                        accessor: "name",
-                        sortType: "basic",
-                    },
-                    {
-                        Header: "Cantidad",
-                        accessor: "available",
-                        sortType: "basic",
-                    },
-
-
-
-                ],
+                Header: "Id",
+                accessor: "id",
+                sortType: "basic"
+            },
+            {
+                Header: "Nombre",
+                accessor: "name",
+                sortType: "basic"
+            },
+            {
+                Header: "Cantidad",
+                accessor: "available",
+                sortType: "basic"
             }
+
         ];
 
         return (
-            <div className="product-list">
-                <div className="product-list__options">
-
+            <div className="product-list" >
+                {/* <div className="product-list__options">
                     <button className="product-list__button" onClick={showModal}>Agregar producto</button>
-                </div>
-                <Table columns={columns} data={products} />
+                </div> */}
+
+                <Table columns={columns} data={products} title="Productos" />
             </div>
+        );
+    }
+    renderCreateProductButton = () => {
+        return (
+            <>
+                <button className="new_product-button" onClick={() => showModal('#productModal', '#productModalForm')}>Agregar Producto +</button>
+                <ProductModal />
+            </>
         );
     }
     render() {
         return (
             <div className="product">
                 {this.renderTable()}
-                <ProductModal />
+                {this.renderCreateProductButton()}
             </div>
 
         )
