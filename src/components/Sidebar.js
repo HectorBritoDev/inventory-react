@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './css/Sidebar.scss';
 class Sidebar extends React.Component {
+
     render() {
         return (
             <div className="sidebar">
@@ -40,11 +41,15 @@ class Sidebar extends React.Component {
                     <li className=" ">
                         <h2 className="sidebar__header">Productos</h2>
                         <ul className="ul sidebar__items">
-                            <Link to="/products/create" className="sidebar__item--link">
-                                <li className="sidebar__item li">
-                                    Nuevo
-                                </li>
-                            </Link>
+                            {/* <Link to="/products/create" className="sidebar__item--link"> */}
+                            {/* <a href="#" onClick={this.openModal}> */}
+
+                            <li className="sidebar__item li" >
+                                Nuevo
+                            {/* <ProductModal /> */}
+                            </li>
+                            {/* </a> */}
+                            {/* </Link> */}
                             <Link to="/products" className="sidebar__item--link">
                                 <li className="sidebar__item li">
                                     Listado
