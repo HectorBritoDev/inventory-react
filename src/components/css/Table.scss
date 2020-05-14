@@ -1,0 +1,48 @@
+.table {
+    border-spacing: 1rem;
+    margin: auto;
+
+}
+
+.table__thead {
+    th {
+        text-align: center;
+    }
+}
+
+.table__tbody {
+    td {
+        text-align: center;
+    }
+}
+
+.table-title {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+
+.table-options {
+    display: flex;
+    justify-content: space-between;
+}
+
+.table-select {
+    option {
+        text-align: center;
+    }
+}
+
+.pagination {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.pagination-info__gotoPage {
+    margin-top: 0.5rem;
+}
