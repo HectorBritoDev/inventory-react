@@ -28,19 +28,18 @@ export class ProductModal extends Component {
     }
 
     onSubmitForm = formValues => {
-        console.log('success');
         this.props.storeProduct(formValues);
     };
 
     resetAndCloseModal = () => {
         this.props.reset();
-        closeModal();
+        closeModal('#productModal');
     };
 
     render() {
         return (
-            <ModalTemplate target='#product-modal' closeModal={this.resetAndCloseModal} title="Producto">
-                <form onSubmit={this.props.handleSubmit(this.onSubmitForm)}>
+            <ModalTemplate target='#product-modal' closeModal={this.resetAndCloseModal} title="Producto" id="productModal">
+                <form onSubmit={this.props.handleSubmit(this.onSubmitForm)} id="productModalForm">
                     <Field name="code" id="code" type="text" placeholder="Código (opcional)" component={this.renderInput} applyClass="modal-input" />
                     <Field name="name" id="name" type="text" placeholder="Nombre" component={this.renderInput} applyClass="modal-input" />
                     <Field name="quantity" id="quantity" type="text" placeholder="Cantidad" component={this.renderInput} applyClass="modal-input" />
