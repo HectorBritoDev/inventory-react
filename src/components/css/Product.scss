@@ -9,7 +9,8 @@
 }
 
 .product-list {
-    border: solid 1px black
+    border: solid 1px black;
+    padding: 1rem
 }
 
 .product-list__options {
@@ -27,19 +28,13 @@
     margin: 0 1rem;
 }
 
-.table {
-    border-spacing: 1rem;
-
-}
-
-.table__thead {
-    th {
-        text-align: center;
-    }
-}
-
-.table__tbody {
-    td {
-        text-align: center;
-    }
+.new_product-button {
+    position: fixed;
+    right: 5%;
+    bottom: 7%;
+    padding: 0.5rem 1rem;
+    outline: none;
+    background-color: map-get($colors, primary);
+    border: none;
+    color: white;
 }
