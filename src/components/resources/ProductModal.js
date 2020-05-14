@@ -74,7 +74,7 @@ const validate = formValues => {
         errors.unitary_price = 'Ingresa un precio';
     }
 
-    if (parseInt(formValues.unitary_price) < 0) {
+    if (parseInt(formValues.unitary_price) <= 0) {
         errors.unitary_price = "La cantidad tiene que ser superior a 0";
     }
 
