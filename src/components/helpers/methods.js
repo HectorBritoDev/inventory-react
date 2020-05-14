@@ -74,12 +74,14 @@ export const currencyFormat = num => {
         .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
 }
 
-export const closeModal = () => {
-    const modal = document.querySelector('.modal');
+export const closeModal = (modalId) => {
+    const modal = document.querySelector(String(modalId));
     modal.classList.remove('show');
+    console.log('closed');
 }
-export const showModal = () => {
-    const modal = document.querySelector('.modal');
+export const showModal = (modalId, formId) => {
+    const modal = document.querySelector(String(modalId));
     modal.classList.add('show');
-    document.querySelector('.modal-input').form[0].focus()
+    document.querySelector(String(formId))[0].focus()
+    console.log('opened');
 }
