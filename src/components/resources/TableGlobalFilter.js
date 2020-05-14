@@ -10,7 +10,7 @@ const TableGlobalFilter = ({ prepareGlobalFilteredRows, globalFilter, setGlobalF
                 onChange={e => {
                     setGlobalFilter(e.target.value || undefined); //set undefined to remove the filter entirely
                 }}
-                placeholder={"Buscar entre registros..."}
+                placeholder={"Ingrese busqueda"}
                 style={{ boder: "0" }}
             />
         </span>
