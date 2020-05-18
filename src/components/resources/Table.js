@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTable, useSortBy, useFilters, useGlobalFilter, usePagination } from 'react-table';
 import TableGlobalFilter from './TableGlobalFilter';
+import ExportPDF from './ExportPDF';
 import '../css/Table.scss';
 
 //Default Filter input per Row - Diferent from Global filter
@@ -82,7 +83,7 @@ const Table = ({ columns, data, title }) => {
                     setGlobalFilter={setGlobalFilter}
                 />
                 <span>
-
+                    <ExportPDF title="Reporte Productos" tableHeaders={[["ID", "Nombre", "Cantidad"]]} data={data} />
                     Mostrar{" "}
                     <select
                         value={pageSize}
@@ -121,7 +122,7 @@ const Table = ({ columns, data, title }) => {
                         </tr>
                     ))}
                 </thead>
-                <tbody {...getTableBodyProps()} className="table__tbody">
+                <tbody {...getTableBodyProps()} className="table__tbody" id="table-body">
                     {page.map((row, i) => {
                         prepareRow(row);
                         return (
