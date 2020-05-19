@@ -82,21 +82,26 @@ const Table = ({ columns, data, title }) => {
                     globalFilter={state.globalFilter}
                     setGlobalFilter={setGlobalFilter}
                 />
-                <span>
-                    <ExportPDF title="Reporte Productos" tableHeaders={[["ID", "Nombre", "Cantidad"]]} data={data} />
-                    Mostrar{" "}
-                    <select
-                        value={pageSize}
-                        onChange={e => {
-                            setPageSize(Number(e.target.value));
-                        }}
-                        className="table-select"
-                    >
-                        {[10, 20, 30, 40, 50].map(pageSize => {
-                            return <option key={pageSize} value={pageSize}>{pageSize}</option>
-                        })}
-                    </select>
-                </span>
+                <div className="table-options__exportAndChunk">
+                    <span>
+                        Exportar: {" "}
+                        <ExportPDF title="Reporte Productos" tableHeaders={[["ID", "Nombre", "Cantidad"]]} data={data} />
+                    </span>
+                    <span>
+                        Mostrar{" "}
+                        <select
+                            value={pageSize}
+                            onChange={e => {
+                                setPageSize(Number(e.target.value));
+                            }}
+                            className="table-select"
+                        >
+                            {[10, 20, 30, 40, 50].map(pageSize => {
+                                return <option key={pageSize} value={pageSize}>{pageSize}</option>
+                            })}
+                        </select>
+                    </span>
+                </div>
             </div>
 
             {/* Table */}
