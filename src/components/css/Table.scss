@@ -24,7 +24,9 @@
 }
 
 
-.table-options {
+.table-options {}
+
+.table-options__exportAndChunk {
     display: flex;
     justify-content: space-between;
 }
