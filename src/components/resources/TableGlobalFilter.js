@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/TableGlobalFilter.scss';
 
 const TableGlobalFilter = ({ prepareGlobalFilteredRows, globalFilter, setGlobalFilter }) => {
     // const count = prepareGlobalFilteredRows && prepareGlobalFilteredRows.length;
@@ -12,6 +13,7 @@ const TableGlobalFilter = ({ prepareGlobalFilteredRows, globalFilter, setGlobalF
                 }}
                 placeholder={"Ingrese busqueda"}
                 style={{ boder: "0" }}
+                className="global-search__input"
             />
         </span>
     );
