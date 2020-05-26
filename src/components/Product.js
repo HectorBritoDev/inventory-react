@@ -5,9 +5,22 @@ import ProductModal from './resources/ProductModal';
 import Table from './resources/Table';
 import { showModal } from './helpers/methods';
 import './css/Product.scss';
+
+
+
 export class Product extends Component {
+
     componentDidMount() {
         this.props.getAllProducts();
+        const productToEdit = {};
+    }
+
+    editProduct = (id) => {
+        id = id - 1;
+        this.productToEdit = this.props.products[id];
+        console.log(this.productToEdit);
+        showModal('#productModal', '#productModalForm');
+
     }
     renderTable = () => {
         var { products } = this.props;
@@ -17,21 +30,31 @@ export class Product extends Component {
         const columns = [
 
             {
-                Header: "Id",
-                accessor: "id",
-                sortType: "basic"
-            },
-            {
                 Header: "Nombre",
                 accessor: "name",
-                sortType: "basic"
             },
             {
                 Header: "Cantidad",
                 accessor: "available",
-                sortType: "basic"
-            }
+            },
+            {
+                Header: "Categoría",
+                accessor: "category",
+                sortType: "basic",
 
+            },
+            {
+                id: 'edit',
+                accessor: 'id',
+                Cell: ({ value }) => (<button onClick={e => { this.editProduct(value) }}>Editar</button>)
+
+            },
+            {
+                id: 'delete',
+                accessor: 'id',
+                Cell: ({ value }) => (<button onClick={e => { console.log('eliminar ', value) }}>Eliminar</button>)
+
+            }
         ];
 
         return (
@@ -48,7 +71,7 @@ export class Product extends Component {
         return (
             <>
                 <button className="new_product-button" onClick={() => showModal('#productModal', '#productModalForm')}>Agregar Producto +</button>
-                <ProductModal />
+                <ProductModal initialValues={this.productToEdit} enableReinitialize />
             </>
         );
     }
@@ -62,5 +85,9 @@ export class Product extends Component {
         )
     }
 }
-const mapStateToProps = state => { return { products: Object.values(state.products) } };
+const mapStateToProps = state => {
+    return {
+        products: Object.values(state.products),
+    }
+};
 export default connect(mapStateToProps, { getAllProducts })(Product)
