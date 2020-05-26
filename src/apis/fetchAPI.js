@@ -35,6 +35,12 @@ const post = (url, formData = '') => fetch(_constructUrl(url), {
     headers: headers()
 }).then(handleResponse);
 
+const put = (url, formData = '') => fetch(_constructUrl(url), {
+    method: 'PUT',
+    body: JSON.stringify({ ...formData, client_name }),
+    headers: headers()
+}).then(handleResponse);
+
 function handleResponse(response) {
     if (response.ok) {
         return response.json();
@@ -44,4 +50,4 @@ function handleResponse(response) {
 
 }
 
-export default { get, post };
+export default { get, post, put };
