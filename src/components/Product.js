@@ -12,15 +12,17 @@ export class Product extends Component {
 
     componentDidMount() {
         this.props.getAllProducts();
-        const productToEdit = {};
     }
 
     editProduct = (id) => {
         id = id - 1;
         this.productToEdit = this.props.products[id];
-        console.log(this.productToEdit);
         showModal('#productModal', '#productModalForm');
 
+    }
+    createProduct = () => {
+        this.productToEdit = null;
+        showModal('#productModal', '#productModalForm');
     }
     renderTable = () => {
         var { products } = this.props;
@@ -70,7 +72,7 @@ export class Product extends Component {
     renderCreateProductButton = () => {
         return (
             <>
-                <button className="new_product-button" onClick={() => showModal('#productModal', '#productModalForm')}>Agregar Producto +</button>
+                <button className="new_product-button" onClick={this.createProduct}>Agregar Producto +</button>
                 <ProductModal initialValues={this.productToEdit} enableReinitialize />
             </>
         );
