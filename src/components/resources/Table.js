@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTable, useSortBy, useFilters, useGlobalFilter, usePagination } from 'react-table';
+import { useTable, useSortBy, useFilters, useGlobalFilter, usePagination, useGroupBy, useExpanded } from 'react-table';
 import TableGlobalFilter from './TableGlobalFilter';
 import ExportPDF from './ExportPDF';
 import '../css/Table.scss';
@@ -52,6 +52,7 @@ const Table = ({ columns, data, title }) => {
         // visibleColumns,
         prepareGlobalFilteredRows,
         setGlobalFilter,
+
         // Pagination props
         page,
         canPreviousPage,
@@ -67,9 +68,12 @@ const Table = ({ columns, data, title }) => {
         { columns, data, defaultColumn, filterTypes, initialState: { pageIndex: 0 } },
         useFilters,
         useGlobalFilter,
+        useGroupBy,
         useSortBy,
-        usePagination
+        useExpanded,
+        usePagination,
     );
+
 
     return (
         <>
@@ -118,10 +122,10 @@ const Table = ({ columns, data, title }) => {
                             {headerGroup.headers.map(column => (
                                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                                     {column.render("Header")}
+
                                     <span>
                                         {column.isSorted ? (column.isSortedDesc ? " ▲" : " ▼") : ""}
                                     </span>
-                                    {/* <div>{column.canFilter ? column.render("Filter") : null}</div> */}
                                 </th>
                             ))}
                         </tr>
