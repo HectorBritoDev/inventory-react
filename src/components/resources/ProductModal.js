@@ -29,6 +29,7 @@ export class ProductModal extends Component {
 
     onSubmitForm = formValues => {
         this.props.storeProduct(formValues);
+        // console.log(formValues);
     };
 
     resetAndCloseModal = () => {
@@ -42,7 +43,7 @@ export class ProductModal extends Component {
                 <form onSubmit={this.props.handleSubmit(this.onSubmitForm)} id="productModalForm">
                     <Field name="code" id="code" type="text" placeholder="Código (opcional)" component={this.renderInput} applyClass="modal-input" />
                     <Field name="name" id="name" type="text" placeholder="Nombre" component={this.renderInput} applyClass="modal-input" />
-                    <Field name="quantity" id="quantity" type="text" placeholder="Cantidad" component={this.renderInput} applyClass="modal-input" />
+                    <Field name="available" id="available" type="text" placeholder="Cantidad" component={this.renderInput} applyClass="modal-input" />
                     <Field name="unitary_price" id="unitary_price" type="text" placeholder="Precio Unitario" component={this.renderInput} applyClass="modal-input" />
                     <Field name="mayoritary_price" id="mayoritary_price" type="text" placeholder="Precio Mayoritario" component={this.renderInput} applyClass="modal-input" />
                     <Field name="apply_mayoritary_price_since" id="apply_mayoritary_price_since" type="text" placeholder="Aplicar precio mayoritario a partir de" component={this.renderInput} applyClass="modal-input" />
@@ -81,6 +82,6 @@ const validate = formValues => {
 
 };
 const formWrapped = reduxForm({ form: 'product', validate })(ProductModal);
-
+// const mapStateToProps = (state, ownProps) => { return { product: ownProps.productToEdit } }
 export default connect(null, { storeProduct })(formWrapped);
 
