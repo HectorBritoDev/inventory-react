@@ -8,6 +8,8 @@ export default (state = {}, action) => {
             return { ...state, ..._.mapKeys(action.payload, 'id') }
         case productConst.STORE_PRODUCT:
             return { ...state, [action.payload.id]: action.payload }
+        case productConst.UPDATE_PRODUCT:
+            return { ...state, [action.payload.id]: action.payload }
         default:
             return state;
     }
