@@ -110,7 +110,7 @@ class Dashboard extends React.Component {
                                     <td className="text-right primary strong">{this.calculateLowStock()}</td>
                                 </tr>
                                 <tr>
-                                    <td >Categorias</td>
+                                    <td >Categorias con productos</td>
                                     <td className="text-right strong">{this.calculateTotalCategories()}</td>
                                 </tr>
                                 <tr>
