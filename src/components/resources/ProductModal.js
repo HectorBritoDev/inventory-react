@@ -29,8 +29,8 @@ export class ProductModal extends Component {
 
     onSubmitForm = formValues => {
         (this.props.initialValues)
-            ? this.props.storeProduct(formValues)
-            : this.props.updateProduct(formValues);
+            ? this.props.updateProduct(formValues)
+            : this.props.storeProduct(formValues);
         // this.props.storeProduct(formValues);
         // console.log(formValues);
     };
@@ -86,5 +86,5 @@ const validate = formValues => {
 };
 const formWrapped = reduxForm({ form: 'product', validate })(ProductModal);
 // const mapStateToProps = (state, ownProps) => { return { initialValues: getFormInitialValues('product')(state), } }
-export default connect(null, { storeProduct })(formWrapped);
+export default connect(null, { storeProduct, updateProduct })(formWrapped);
 
