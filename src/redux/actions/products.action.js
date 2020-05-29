@@ -19,6 +19,11 @@ export const updateProduct = formValues => (dispatch, getState) => {
         .then(response => dispatch({ type: productConst.UPDATE_PRODUCT, payload: response.data }))
         .catch(error => handleError(error, dispatch))
 }
+export const destroyProduct = id => (distpatch, getState) => {
+    fetchAPI.destroy('/products/' + id)
+        .then(response => distpatch({ type: productConst.DESTROY_PRODUCT, payload: response.data }))
+        .catch(error => handleError(error, distpatch));
+}
 
 function handleError(error, dispatch) {
     return dispatch({ type: productConst.ERROR, payload: error });
