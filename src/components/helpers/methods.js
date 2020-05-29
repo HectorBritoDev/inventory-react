@@ -1,7 +1,15 @@
-export const groupBy = (array, key) => { //Key is the criteria to group
+export const groupBy = (array, key, nestedObject = null) => { //Key is the criteria to group
     return array.reduce(function (storage, value) {
+        //Checks if the key to group by exists
+        if (nestedObject) {
+            if (typeof value[nestedObject] === 'undefined' || typeof value[nestedObject][key] === 'undefined') {
+                return storage;
+            }
+        } else if (typeof value[key] === 'undefined') {
+            return storage;
+        }
         // get the first instance of the key by which we're grouping
-        let group = value[key];
+        let group = nestedObject ? value[nestedObject][key] : value[key];
 
         //creates the index for the new group if doesn't have one creates a new index
         storage[group] = storage[group] || [];
