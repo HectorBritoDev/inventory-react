@@ -35,7 +35,7 @@ class Dashboard extends React.Component {
     calculateTotalCategories = () => {
         //groupBy method returns an object with all categories and the value
         //Object.keys gets only the keys
-        let categories = Object.keys(groupBy(this.props.products, 'category_url'));
+        let categories = Object.keys(groupBy(this.props.products, 'id', 'category'));
         //remove the 'undefined' index comming from products without categories
         if (categories.indexOf('undefined') === 1) {
             categories.splice(categories.indexOf('undefined'), 1);
@@ -44,14 +44,14 @@ class Dashboard extends React.Component {
     }
     calculateProductsWithinCategories = () => {
         let total_products = this.props.products.filter((product) => {
-            return product.category_url != null;
+            return product.category != null;
         });
         return numberFormat(total_products.length);
     }
     calculateProductsWithoutCategories = () => {
 
         let total_products = this.props.products.filter((product) => {
-            return !Object.keys(product).includes('category_url');
+            return typeof product.category === 'undefined';
         });
         return numberFormat(total_products.length);
     }
