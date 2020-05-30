@@ -14,16 +14,21 @@ export const notificationConst = {
 };
 
 export const productConst = {
-    GET_ALL_PRODUCTS: 'GET_ALL_PRODUCTS',
-    STORE_PRODUCT: 'STORE_PRODUCT',
-    UPDATE_PRODUCT: 'UPDATE_PRODUCT',
-    DESTROY_PRODUCT: 'DESTROY_PRODUCT',
+    GET_ALL: 'GET_ALL_PRODUCTS',
+    STORE: 'STORE_PRODUCT',
+    UPDATE: 'UPDATE_PRODUCT',
+    DESTROY: 'DESTROY_PRODUCT',
     CLEAN: 'PRODUCTS_CLEAN',
     ERROR: 'PRODUCTS_ERROR'
 }
 
 export const saleConst = {
-    GET_ALL_SALES: 'GET_ALL_SALES',
+    GET_ALL: 'GET_ALL_SALES',
     CLEAN: 'SALE_CLEAN',
     ERROR: 'SALE_ERROR'
+}
+
+export const categoryConst = {
+    GET_ALL: 'GET_ALL_CATEGORIES',
+    ERROR: 'ERROR_CATEGORY'
 }
