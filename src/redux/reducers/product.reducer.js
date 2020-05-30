@@ -10,6 +10,8 @@ export default (state = {}, action) => {
             return { ...state, [action.payload.id]: action.payload }
         case productConst.UPDATE_PRODUCT:
             return { ...state, [action.payload.id]: action.payload }
+        case productConst.DESTROY_PRODUCT:
+            return _.omit(state, action.payload)
         default:
             return state;
     }
