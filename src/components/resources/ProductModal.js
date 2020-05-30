@@ -36,10 +36,9 @@ export class ProductModal extends Component {
                 <select {...input} id="category_product_selector">
                     <option value="">Categoria</option>
                     {this.props.categories.map(function (category) {
-                        return category ? (
-                            <option key={category.name} value={category.id}>{category.name}</option>
+                        return (
+                            <option key={category.id} value={category.id}>{category.name}</option>
                         )
-                            : null;
                     })}
                 </select>
             </React.Fragment>
