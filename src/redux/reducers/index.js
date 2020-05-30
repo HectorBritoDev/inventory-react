@@ -7,6 +7,7 @@ import authReducer from './auth.reducer';
 import notificationReducer from './notification.reducer';
 import productReducer from './product.reducer';
 import saleReducer from './sale.reducer';
+import categoryReducer from './category.reducer';
 
 const persistConfig = {
     key: 'root',
@@ -22,6 +23,7 @@ const reducers = combineReducers({
     auth: persistReducer(authPersistConfig, authReducer),
     products: productReducer,
     sales: saleReducer,
+    categories: categoryReducer,
     form: formReducer,
     notification: notificationReducer,
 });
