@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { getAllProducts } from '../redux/actions/products.action';
+import { getAllProducts, destroyProduct } from '../redux/actions/products.action';
 import ProductModal from './resources/ProductModal';
 import Table from './resources/Table';
 import { showModal } from './helpers/methods';
@@ -14,11 +14,16 @@ export class Product extends Component {
         this.props.getAllProducts();
     }
 
-    editProduct = (id) => {
-        id = id - 1;
+    editProduct = id => {
+        id -= 1;
         this.productToEdit = this.props.products[id];
         showModal('#productModal', '#productModalForm');
 
+    }
+    deleteProduct = id => {
+        id = id === 1 ? id : id - 1;
+        console.log(id);
+        this.props.destroyProduct(id);
     }
     createProduct = () => {
         this.productToEdit = null;
@@ -41,7 +46,7 @@ export class Product extends Component {
             },
             {
                 Header: "Categoría",
-                accessor: "category",
+                accessor: "category.name",
                 sortType: "basic",
 
             },
@@ -54,7 +59,7 @@ export class Product extends Component {
             {
                 id: 'delete',
                 accessor: 'id',
-                Cell: ({ value }) => (<button onClick={e => { console.log('eliminar ', value) }}>Eliminar</button>)
+                Cell: ({ value }) => (<button onClick={e => { this.deleteProduct(value) }} > Eliminar</button >)
 
             }
         ];
@@ -65,7 +70,7 @@ export class Product extends Component {
                     <button className="product-list__button" onClick={showModal}>Agregar producto</button>
                 </div> */}
 
-                <Table columns={columns} data={products} title="Productos" />
+                < Table columns={columns} data={products} title="Productos" />
             </div>
         );
     }
@@ -92,4 +97,4 @@ const mapStateToProps = state => {
         products: Object.values(state.products),
     }
 };
-export default connect(mapStateToProps, { getAllProducts })(Product)
+export default connect(mapStateToProps, { getAllProducts, destroyProduct })(Product)
