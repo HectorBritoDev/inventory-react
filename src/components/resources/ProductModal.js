@@ -2,17 +2,21 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { closeModal } from '../helpers/methods';
-import { storeProduct, updateProduct } from '../../redux/actions/products.action';
+import { storeProduct, updateProduct } from '../../redux/actions/products.actions';
+import { getAllCategories } from '../../redux/actions/categories.actions';
 import ModalTemplate from './ModalTemplate';
 import '../css/ProductModal.scss';
 
 export class ProductModal extends Component {
+    componentDidMount() {
+        this.props.getAllCategories();
+    }
     renderError = ({ error, touched }) => {
         if (error && touched) {
             return <span className="text-error">{error}</span>
         }
     }
-    renderInput = ({ input, id, type, placeholder = '', applyClass = '', autoFocus = "false", meta }) => {
+    renderInput = ({ input, id, type, placeholder = '', applyClass = '', meta }) => {
         return (
             <React.Fragment>
                 <input {...input}
@@ -21,8 +25,23 @@ export class ProductModal extends Component {
                     placeholder={placeholder}
                     className={`${applyClass}  ${(meta.error && meta.touched) ? 'input-error' : ''}`}
                     autoComplete="off"
-                    autoFocus={autoFocus !== 'false' ? true : false} />
+                />
                 {this.renderError(meta)}
+            </React.Fragment>
+        );
+    }
+    renderCategorySelector = ({ input, meta }) => {
+        return (
+            <React.Fragment>
+                <select {...input} id="category_product_selector">
+                    <option value="">Categoria</option>
+                    {this.props.categories.map(function (category) {
+                        return category ? (
+                            <option key={category.name} value={category.id}>{category.name}</option>
+                        )
+                            : null;
+                    })}
+                </select>
             </React.Fragment>
         );
     }
@@ -50,7 +69,7 @@ export class ProductModal extends Component {
                     <Field name="unitary_price" id="unitary_price" type="text" placeholder="Precio Unitario" component={this.renderInput} applyClass="modal-input" />
                     <Field name="mayoritary_price" id="mayoritary_price" type="text" placeholder="Precio Mayoritario" component={this.renderInput} applyClass="modal-input" />
                     <Field name="apply_mayoritary_price_since" id="apply_mayoritary_price_since" type="text" placeholder="Aplicar precio mayoritario a partir de" component={this.renderInput} applyClass="modal-input" />
-                    <Field name="category" id="category" type="text" placeholder="Categoria" component={this.renderInput} applyClass="modal-input" />
+                    <Field name="category" id="category" type="text" placeholder="Categoria" component={this.renderCategorySelector} applyClass="modal-input" />
                     <button type="submit" className="modal-submit-button">Agregar</button>
                 </form>
             </ModalTemplate>
@@ -85,6 +104,6 @@ const validate = formValues => {
 
 };
 const formWrapped = reduxForm({ form: 'product', validate })(ProductModal);
-// const mapStateToProps = (state, ownProps) => { return { initialValues: getFormInitialValues('product')(state), } }
-export default connect(null, { storeProduct, updateProduct })(formWrapped);
+const mapStateToProps = state => { return { categories: Object.values(state.categories) } };
+export default connect(mapStateToProps, { storeProduct, updateProduct, getAllCategories })(formWrapped);
 
