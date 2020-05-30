@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { getAllProducts, destroyProduct } from '../redux/actions/products.action';
+import { getAllProducts, destroyProduct } from '../redux/actions/products.actions';
 import ProductModal from './resources/ProductModal';
 import Table from './resources/Table';
 import { showModal } from './helpers/methods';
@@ -93,8 +93,6 @@ export class Product extends Component {
     }
 }
 const mapStateToProps = state => {
-    return {
-        products: Object.values(state.products),
-    }
+    return { products: Object.values(state.products) }
 };
 export default connect(mapStateToProps, { getAllProducts, destroyProduct })(Product)

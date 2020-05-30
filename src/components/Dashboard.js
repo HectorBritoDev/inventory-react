@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getAllProducts } from '../redux/actions/products.action';
+import { getAllProducts } from '../redux/actions/products.actions';
 import { groupBy, orderBy, mathSimpleOperation, numberFormat } from './helpers/methods';
 import Cart from './resources/Cart';
 import './css/Dashboard.scss';
