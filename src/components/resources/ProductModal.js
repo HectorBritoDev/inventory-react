@@ -35,11 +35,10 @@ export class ProductModal extends Component {
             <React.Fragment>
                 <select {...input} id="category_product_selector">
                     <option value="">Categoria</option>
-                    {this.props.categories.map(function (category) {
-                        return (
-                            <option key={category.id} value={category.id}>{category.name}</option>
-                        )
-                    })}
+                    {this.props.categories.map(category =>
+                        <option key={category.id} value={category.id}>{category.name}</option>
+                    )}
+
                 </select>
             </React.Fragment>
         );
@@ -68,7 +67,7 @@ export class ProductModal extends Component {
                     <Field name="unitary_price" id="unitary_price" type="text" placeholder="Precio Unitario" component={this.renderInput} applyClass="modal-input" />
                     <Field name="mayoritary_price" id="mayoritary_price" type="text" placeholder="Precio Mayoritario" component={this.renderInput} applyClass="modal-input" />
                     <Field name="apply_mayoritary_price_since" id="apply_mayoritary_price_since" type="text" placeholder="Aplicar precio mayoritario a partir de" component={this.renderInput} applyClass="modal-input" />
-                    <Field name="category" id="category" type="text" placeholder="Categoria" component={this.renderCategorySelector} applyClass="modal-input" />
+                    <Field name="category" id="category" component={this.renderCategorySelector} />
                     <button type="submit" className="modal-submit-button">Agregar</button>
                 </form>
             </ModalTemplate>
