@@ -79,6 +79,7 @@ export class Product extends Component {
                     enableReinitialize
                     initialValues={this.productToEdit ?
                         {
+                            id: this.productToEdit.id,
                             code: this.productToEdit.code,
                             name: this.productToEdit.name,
                             available: this.productToEdit.available,
