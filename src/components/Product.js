@@ -78,7 +78,21 @@ export class Product extends Component {
         return (
             <>
                 <button className="new_product-button" onClick={this.createProduct}>Agregar Producto +</button>
-                <ProductModal initialValues={this.productToEdit} enableReinitialize />
+                <ProductModal
+                    enableReinitialize
+                    initialValues={this.productToEdit ?
+                        {
+                            code: this.productToEdit.code,
+                            name: this.productToEdit.name,
+                            available: this.productToEdit.available,
+                            mayoritary_price: this.productToEdit.mayoritary_price,
+                            unitary_price: this.productToEdit.unitary_price,
+                            apply_mayoritary_price_since: this.productToEdit.apply_mayoritary_price_since,
+                            category: this.productToEdit.category.id
+                        }
+                        : null
+                    }
+                />
             </>
         );
     }
