@@ -15,14 +15,11 @@ export class Product extends Component {
     }
 
     editProduct = id => {
-        id -= 1;
-        this.productToEdit = this.props.products[id];
+        this.productToEdit = this.props.products.find(product => product.id === id);
         showModal('#productModal', '#productModalForm');
 
     }
     deleteProduct = id => {
-        id = id === 1 ? id : id - 1;
-        console.log(id);
         this.props.destroyProduct(id);
     }
     createProduct = () => {
