@@ -15,7 +15,7 @@ export const storeProduct = formValues => (dispatch, getState) => {
 }
 
 export const updateProduct = formValues => (dispatch, getState) => {
-    fetchAPI.put('/products/' + formValues.id, formValues)
+    fetchAPI.put('/products/' + formValues.productId, formValues)
         .then(response => dispatch({ type: productConst.UPDATE, payload: response.data }))
         .catch(error => handleError(error, dispatch))
 }
