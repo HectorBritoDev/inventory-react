@@ -50,13 +50,13 @@ export class Product extends Component {
             {
                 id: 'edit',
                 accessor: 'id',
-                Cell: ({ value }) => (<button onClick={e => { this.editProduct(value) }}>Editar</button>)
+                Cell: ({ value }) => (<button onClick={e => this.editProduct(value)}>Editar</button>)
 
             },
             {
                 id: 'delete',
                 accessor: 'id',
-                Cell: ({ value }) => (<button onClick={e => { this.deleteProduct(value) }} > Eliminar</button >)
+                Cell: ({ value }) => (<button onClick={e => this.deleteProduct(value)} > Eliminar</button >)
 
             }
         ];
@@ -86,7 +86,7 @@ export class Product extends Component {
                             mayoritary_price: this.productToEdit.mayoritary_price,
                             unitary_price: this.productToEdit.unitary_price,
                             apply_mayoritary_price_since: this.productToEdit.apply_mayoritary_price_since,
-                            category: this.productToEdit.category.id
+                            category: this.productToEdit.category ? this.productToEdit.category.id : null
                         }
                         : null
                     }
